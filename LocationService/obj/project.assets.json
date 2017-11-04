@@ -12594,9 +12594,9 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\works\\projetos\\dotnet\\LocationService\\LocationService\\LocationService.csproj",
-      "projectName": "LocationService",
-      "projectPath": "C:\\works\\projetos\\dotnet\\LocationService\\LocationService\\LocationService.csproj",
+      "projectUniqueName": "C:\\works\\projetos\\dotnet\\LocationService\\LocationService\\LocationService.Api.csproj",
+      "projectName": "LocationService.Api",
+      "projectPath": "C:\\works\\projetos\\dotnet\\LocationService\\LocationService\\LocationService.Api.csproj",
       "packagesPath": "C:\\Users\\eduar\\.nuget\\packages\\",
       "outputPath": "C:\\works\\projetos\\dotnet\\LocationService\\LocationService\\obj\\",
       "projectStyle": "PackageReference",

@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LocationService.Configure
+namespace LocationService.Api.Configure
 {
     public class InjectionDependency
     {
