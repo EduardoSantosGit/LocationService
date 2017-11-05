@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Xunit;
 
 namespace LocationService.IntegrationTest.Adresses
 {
@@ -15,11 +16,12 @@ namespace LocationService.IntegrationTest.Adresses
             return new AdressesClientApi();
         }
 
+        [Fact]
         public async Task GetAdressesCep_WhenCepString_ReturnsStringPageOk()
         {
             var adressApi = CreateInstance();
             var result = await adressApi.GetAdressesCep("01311200");
-
+            Assert.NotNull(result);
         }
     }
 }
