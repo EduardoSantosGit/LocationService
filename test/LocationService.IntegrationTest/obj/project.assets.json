@@ -5645,7 +5645,6 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
-      "C:\\works\\projetos\\dotnet\\LocationService\\test\\src\\LocationService.Infrastructure\\LocationService.Infrastructure.csproj",
       "LocationService.Infrastructure >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 15.3.0-preview-20170628-02",
       "Microsoft.NETCore.App >= 2.0.0",
@@ -5686,9 +5685,6 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\works\\projetos\\dotnet\\LocationService\\test\\src\\LocationService.Infrastructure\\LocationService.Infrastructure.csproj": {
-              "projectPath": "C:\\works\\projetos\\dotnet\\LocationService\\test\\src\\LocationService.Infrastructure\\LocationService.Infrastructure.csproj"
-            },
             "C:\\works\\projetos\\dotnet\\LocationService\\src\\LocationService.Infrastructure\\LocationService.Infrastructure.csproj": {
               "projectPath": "C:\\works\\projetos\\dotnet\\LocationService\\src\\LocationService.Infrastructure\\LocationService.Infrastructure.csproj"
             }
@@ -5729,16 +5725,5 @@
         "warn": true
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1104",
-      "level": "Error",
-      "message": "Unable to find project 'C:\\works\\projetos\\dotnet\\LocationService\\test\\src\\LocationService.Infrastructure\\LocationService.Infrastructure.csproj'. Check that the project reference is valid and that the project file exists.",
-      "libraryId": "C:\\works\\projetos\\dotnet\\LocationService\\test\\src\\LocationService.Infrastructure\\LocationService.Infrastructure.csproj",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
-    }
-  ]
+  }
 }
