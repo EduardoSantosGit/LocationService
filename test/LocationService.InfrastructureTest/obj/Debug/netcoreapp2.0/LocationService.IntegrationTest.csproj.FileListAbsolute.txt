@@ -1,0 +1,4 @@
+C:\works\projetos\dotnet\LocationService\test\LocationService.InfrastructureTest\obj\Debug\netcoreapp2.0\LocationService.IntegrationTest.csprojResolveAssemblyReference.cache
+C:\works\projetos\dotnet\LocationService\test\LocationService.InfrastructureTest\obj\Debug\netcoreapp2.0\LocationService.IntegrationTest.csproj.CoreCompileInputs.cache
+C:\works\projetos\dotnet\LocationService\test\LocationService.InfrastructureTest\obj\Debug\netcoreapp2.0\LocationService.IntegrationTest.AssemblyInfoInputs.cache
+C:\works\projetos\dotnet\LocationService\test\LocationService.InfrastructureTest\obj\Debug\netcoreapp2.0\LocationService.IntegrationTest.AssemblyInfo.cs
