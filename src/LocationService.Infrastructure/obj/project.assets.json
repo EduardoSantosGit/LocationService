@@ -196,6 +196,19 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "LocationService.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "Microsoft.NETCore.App": "2.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LocationService.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LocationService.Domain.dll": {}
+        }
       }
     }
   },
@@ -656,10 +669,16 @@
         "netstandard.library.2.0.0.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "LocationService.Domain/1.0.0": {
+      "type": "project",
+      "path": "../LocationService.Domain/LocationService.Domain.csproj",
+      "msbuildProject": "../LocationService.Domain/LocationService.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "LocationService.Domain >= 1.0.0",
       "Microsoft.NETCore.App >= 2.0.0"
     ]
   },
@@ -695,7 +714,11 @@
       },
       "frameworks": {
         "netcoreapp2.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\works\\projetos\\dotnet\\LocationService\\src\\LocationService.Domain\\LocationService.Domain.csproj": {
+              "projectPath": "C:\\works\\projetos\\dotnet\\LocationService\\src\\LocationService.Domain\\LocationService.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

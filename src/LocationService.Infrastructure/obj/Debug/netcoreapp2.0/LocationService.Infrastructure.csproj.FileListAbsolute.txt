@@ -9,3 +9,5 @@ C:\works\projetos\dotnet\LocationService\src\LocationService.Infrastructure\obj\
 C:\works\projetos\dotnet\LocationService\src\LocationService.Infrastructure\obj\Debug\netcoreapp2.0\LocationService.Infrastructure.AssemblyInfo.cs
 C:\works\projetos\dotnet\LocationService\src\LocationService.Infrastructure\obj\Debug\netcoreapp2.0\LocationService.Infrastructure.dll
 C:\works\projetos\dotnet\LocationService\src\LocationService.Infrastructure\obj\Debug\netcoreapp2.0\LocationService.Infrastructure.pdb
+C:\works\projetos\dotnet\LocationService\src\LocationService.Infrastructure\bin\Debug\netcoreapp2.0\LocationService.Domain.dll
+C:\works\projetos\dotnet\LocationService\src\LocationService.Infrastructure\bin\Debug\netcoreapp2.0\LocationService.Domain.pdb

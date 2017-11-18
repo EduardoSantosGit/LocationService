@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v2.0": {
       "LocationService.Infrastructure/1.0.0": {
+        "dependencies": {
+          "LocationService.Domain": "1.0.0"
+        },
         "runtime": {
           "LocationService.Infrastructure.dll": {}
+        }
+      },
+      "LocationService.Domain/1.0.0": {
+        "runtime": {
+          "LocationService.Domain.dll": {}
         }
       }
     }
   },
   "libraries": {
     "LocationService.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LocationService.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

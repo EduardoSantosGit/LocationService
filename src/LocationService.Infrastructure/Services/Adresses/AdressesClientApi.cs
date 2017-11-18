@@ -4,21 +4,22 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
-namespace LocationService.Infrastructure.Services.Adress
+namespace LocationService.Infrastructure.Services.Adresses
 {
     public class AdressesClientApi
     {
         public readonly HttpClient _httpClient;
-        public readonly string baseUrl;
-        public readonly string apiUrl;
+        public readonly string _baseUrl;
+        public readonly string _apiUrl;
 
         public AdressesClientApi(HttpClient httpClient = null)
         {
             _httpClient = httpClient ?? new HttpClient();
             _httpClient.Timeout = TimeSpan.FromSeconds(30);
-            baseUrl = "http://www.buscacep.correios.com.br/";
-            apiUrl = "sistemas/buscacep/resultadoBuscaCepEndereco.cfm";
+            _baseUrl = "http://www.buscacep.correios.com.br/";
+            _apiUrl = "sistemas/buscacep/resultadoBuscaCepEndereco.cfm";
         }
 
         public async Task<string> GetAdressesCep(string zipCode)
@@ -31,13 +32,17 @@ namespace LocationService.Infrastructure.Services.Adress
             };
 
             var request = new HttpRequestMessage(HttpMethod.Post,
-                baseUrl + apiUrl) { Content = new FormUrlEncodedContent(nvc) };
+                _baseUrl + _apiUrl) { Content = new FormUrlEncodedContent(nvc) };
 
             var response = await _httpClient.SendAsync(request);
 
+
+            var e = HttpUtility.HtmlDecode("");
+
+
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                return response.Content.ReadAsStringAsync().Result;
+                return HttpUtility.HtmlDecode(response.Content.ReadAsStringAsync().Result);
             }
 
             return null;
