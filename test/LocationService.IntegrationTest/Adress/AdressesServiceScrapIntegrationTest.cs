@@ -1,7 +1,4 @@
 ﻿using LocationService.Infrastructure.Services.Adresses;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -29,5 +26,6 @@ namespace LocationService.IntegrationTest.Adress
             Assert.Equal("São Paulo/SP", adress.Locality);
             Assert.Equal("01311-200", adress.ZipCode);
         }
+        
     }
 }

@@ -8,3 +8,4 @@ C:\works\projetos\dotnet\LocationService\src\LocationService.Domain\obj\Debug\ne
 C:\works\projetos\dotnet\LocationService\src\LocationService.Domain\obj\Debug\netcoreapp2.0\LocationService.Domain.AssemblyInfo.cs
 C:\works\projetos\dotnet\LocationService\src\LocationService.Domain\obj\Debug\netcoreapp2.0\LocationService.Domain.dll
 C:\works\projetos\dotnet\LocationService\src\LocationService.Domain\obj\Debug\netcoreapp2.0\LocationService.Domain.pdb
+C:\works\projetos\dotnet\LocationService\src\LocationService.Domain\obj\Debug\netcoreapp2.0\LocationService.Domain.csprojResolveAssemblyReference.cache

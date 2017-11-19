@@ -10,7 +10,6 @@ namespace LocationService.Api.Controllers
     [Route("api/v1/adress/")]
     public class AdressesController : Controller
     {
-
         public SearchAdressService _searchAdressService;
 
         public AdressesController(SearchAdressService searchAdressService)

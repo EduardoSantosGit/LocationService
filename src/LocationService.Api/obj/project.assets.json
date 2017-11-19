@@ -24244,6 +24244,9 @@
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
       "projectUniqueName": "C:\\works\\projetos\\dotnet\\LocationService\\src\\LocationService.Api\\LocationService.Api.csproj",
       "projectName": "LocationService.Api",
@@ -24268,11 +24271,11 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\works\\projetos\\dotnet\\LocationService\\src\\LocationService.Domain\\LocationService.Domain.csproj": {
-              "projectPath": "C:\\works\\projetos\\dotnet\\LocationService\\src\\LocationService.Domain\\LocationService.Domain.csproj"
-            },
             "C:\\works\\projetos\\dotnet\\LocationService\\src\\LocationService.Infrastructure\\LocationService.Infrastructure.csproj": {
               "projectPath": "C:\\works\\projetos\\dotnet\\LocationService\\src\\LocationService.Infrastructure\\LocationService.Infrastructure.csproj"
+            },
+            "C:\\works\\projetos\\dotnet\\LocationService\\src\\LocationService.Domain\\LocationService.Domain.csproj": {
+              "projectPath": "C:\\works\\projetos\\dotnet\\LocationService\\src\\LocationService.Domain\\LocationService.Domain.csproj"
             }
           }
         }
@@ -24286,22 +24289,22 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
+          "LightInject": {
+            "target": "Package",
+            "version": "5.1.1"
+          },
           "Microsoft.NETCore.App": {
             "target": "Package",
             "version": "2.0.0",
             "autoReferenced": true
           },
-          "LightInject": {
+          "Microsoft.AspNetCore.All": {
             "target": "Package",
-            "version": "5.1.1"
+            "version": "2.0.0"
           },
           "LightInject.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "2.0.5"
-          },
-          "Microsoft.AspNetCore.All": {
-            "target": "Package",
-            "version": "2.0.0"
           }
         },
         "imports": [

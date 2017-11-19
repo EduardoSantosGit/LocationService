@@ -36,6 +36,47 @@ namespace LocationService.IntegrationTest.Adress
             Assert.True(pageData);
         }
 
+        [Fact]
+        public async Task GetAdressesCep_WhenCepStringCaracterInvalid_ReturnsPageNotFound()
+        {
+            var adressApi = CreateInstance();
+            var result = await adressApi.GetAdressesCep("01311300a");
+
+            var type = result is string;
+            var pageData = result.Contains("DADOS NAO ENCONTRADOS");
+
+            Assert.NotNull(result);
+            Assert.True(type);
+            Assert.True(pageData);
+        }
+
+        [Fact]
+        public async Task GetAdressesCep_WhenCepStringValid_ReturnsPage()
+        {
+            var adressApi = CreateInstance();
+            var result = await adressApi.GetAdressesCep("01311300");
+
+            var type = result is string;
+            var pageData = result.Contains("DADOS ENCONTRADOS COM SUCESSO.");
+
+            Assert.NotNull(result);
+            Assert.True(type);
+            Assert.True(pageData);
+        }
+
+        [Fact]
+        public async Task GetAdressesCep_WhenCepStringValidTrace_ReturnsPage()
+        {
+            var adressApi = CreateInstance();
+            var result = await adressApi.GetAdressesCep("01311-300");
+
+            var type = result is string;
+            var pageData = result.Contains("DADOS ENCONTRADOS COM SUCESSO.");
+
+            Assert.NotNull(result);
+            Assert.True(type);
+            Assert.True(pageData);
+        }
 
     }
 }
