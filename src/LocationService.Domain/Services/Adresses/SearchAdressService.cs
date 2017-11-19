@@ -1,4 +1,5 @@
-﻿using LocationService.Domain.Models;
+﻿using LocationService.Domain.Interfaces;
+using LocationService.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,9 +9,16 @@ namespace LocationService.Domain.Services.Adresses
 {
     public class SearchAdressService
     {
+        public IAdressesServices _adressesServices;
+
+        public SearchAdressService(IAdressesServices adressesServices)
+        {
+            _adressesServices = adressesServices;
+        }
+
         public async Task<Adress> FindByZipCode(string zipCode)
         {
-            return null;
-        } 
+            return await _adressesServices.GetAdressesScrap(zipCode);
+        }
     }
 }

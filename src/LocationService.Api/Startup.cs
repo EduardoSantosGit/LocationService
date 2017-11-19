@@ -8,8 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using LocationService.Configure;
 using LightInject.Microsoft.DependencyInjection;
+using LocationService.Api.Configure;
 
 namespace LocationService
 {

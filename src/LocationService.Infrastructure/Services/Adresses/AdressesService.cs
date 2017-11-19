@@ -1,4 +1,5 @@
-﻿using LocationService.Domain.Models;
+﻿using LocationService.Domain.Interfaces;
+using LocationService.Domain.Models;
 using LocationService.Infrastructure.Common;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LocationService.Infrastructure.Services.Adresses
 {
-    public class AdressesService
+    public class AdressesService : IAdressesServices
     {
         public readonly AdressesClientApi _adressesClientApi;
         public readonly AdressesServiceScrap _adressesServiceScrap;

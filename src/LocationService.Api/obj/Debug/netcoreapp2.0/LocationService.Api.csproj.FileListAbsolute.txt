@@ -1,0 +1,15 @@
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\obj\Debug\netcoreapp2.0\LocationService.Api.csprojResolveAssemblyReference.cache
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\obj\Debug\netcoreapp2.0\LocationService.Api.csproj.CoreCompileInputs.cache
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\obj\Debug\netcoreapp2.0\LocationService.Api.AssemblyInfoInputs.cache
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\obj\Debug\netcoreapp2.0\LocationService.Api.AssemblyInfo.cs
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Debug\netcoreapp2.0\LocationService.Api.deps.json
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Debug\netcoreapp2.0\LocationService.Api.runtimeconfig.json
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Debug\netcoreapp2.0\LocationService.Api.runtimeconfig.dev.json
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Debug\netcoreapp2.0\LocationService.Api.dll
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Debug\netcoreapp2.0\LocationService.Api.pdb
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\obj\Debug\netcoreapp2.0\LocationService.Api.dll
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\obj\Debug\netcoreapp2.0\LocationService.Api.pdb
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Debug\netcoreapp2.0\LocationService.Domain.dll
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Debug\netcoreapp2.0\LocationService.Infrastructure.dll
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Debug\netcoreapp2.0\LocationService.Domain.pdb
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Debug\netcoreapp2.0\LocationService.Infrastructure.pdb

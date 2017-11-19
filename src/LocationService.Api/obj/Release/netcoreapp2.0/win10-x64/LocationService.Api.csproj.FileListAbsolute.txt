@@ -1,0 +1,17 @@
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Release\netcoreapp2.0\win10-x64\hostpolicy.dll
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Release\netcoreapp2.0\win10-x64\hostfxr.dll
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Release\netcoreapp2.0\win10-x64\LocationService.Api.exe
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Release\netcoreapp2.0\win10-x64\LocationService.Api.deps.json
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Release\netcoreapp2.0\win10-x64\LocationService.Api.runtimeconfig.json
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Release\netcoreapp2.0\win10-x64\LocationService.Api.runtimeconfig.dev.json
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Release\netcoreapp2.0\win10-x64\LocationService.Api.dll
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Release\netcoreapp2.0\win10-x64\LocationService.Api.pdb
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Release\netcoreapp2.0\win10-x64\LocationService.Domain.dll
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Release\netcoreapp2.0\win10-x64\LocationService.Infrastructure.dll
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Release\netcoreapp2.0\win10-x64\LocationService.Domain.pdb
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Release\netcoreapp2.0\win10-x64\LocationService.Infrastructure.pdb
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\obj\Release\netcoreapp2.0\win10-x64\LocationService.Api.csproj.CoreCompileInputs.cache
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\obj\Release\netcoreapp2.0\win10-x64\LocationService.Api.AssemblyInfoInputs.cache
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\obj\Release\netcoreapp2.0\win10-x64\LocationService.Api.AssemblyInfo.cs
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\obj\Release\netcoreapp2.0\win10-x64\LocationService.Api.dll
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\obj\Release\netcoreapp2.0\win10-x64\LocationService.Api.pdb

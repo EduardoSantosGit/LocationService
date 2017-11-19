@@ -1,4 +1,7 @@
 ﻿using LightInject;
+using LocationService.Api.Controllers;
+using LocationService.Domain.Services.Adresses;
+using LocationService.Infrastructure.Services.Adresses;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -16,7 +19,11 @@ namespace LocationService.Api.Configure
             var containerOptions = new ContainerOptions { EnablePropertyInjection = false };
             var container = new ServiceContainer(containerOptions);
 
+            container.RegisterInstance(new AdressesService(new AdressesClientApi()));
 
+            container.RegisterInstance(new SearchAdressService(container.GetInstance<AdressesService>()));
+
+            container.RegisterInstance(new AdressesController(container.GetInstance<SearchAdressService>()));
 
             container.ScopeManagerProvider = new PerLogicalCallContextScopeManagerProvider();
 

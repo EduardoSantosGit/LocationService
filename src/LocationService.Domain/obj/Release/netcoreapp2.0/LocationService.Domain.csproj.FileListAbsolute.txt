@@ -1,0 +1,10 @@
+C:\works\projetos\dotnet\LocationService\src\LocationService.Domain\bin\Release\netcoreapp2.0\LocationService.Domain.deps.json
+C:\works\projetos\dotnet\LocationService\src\LocationService.Domain\bin\Release\netcoreapp2.0\LocationService.Domain.runtimeconfig.json
+C:\works\projetos\dotnet\LocationService\src\LocationService.Domain\bin\Release\netcoreapp2.0\LocationService.Domain.runtimeconfig.dev.json
+C:\works\projetos\dotnet\LocationService\src\LocationService.Domain\bin\Release\netcoreapp2.0\LocationService.Domain.dll
+C:\works\projetos\dotnet\LocationService\src\LocationService.Domain\bin\Release\netcoreapp2.0\LocationService.Domain.pdb
+C:\works\projetos\dotnet\LocationService\src\LocationService.Domain\obj\Release\netcoreapp2.0\LocationService.Domain.csproj.CoreCompileInputs.cache
+C:\works\projetos\dotnet\LocationService\src\LocationService.Domain\obj\Release\netcoreapp2.0\LocationService.Domain.AssemblyInfoInputs.cache
+C:\works\projetos\dotnet\LocationService\src\LocationService.Domain\obj\Release\netcoreapp2.0\LocationService.Domain.AssemblyInfo.cs
+C:\works\projetos\dotnet\LocationService\src\LocationService.Domain\obj\Release\netcoreapp2.0\LocationService.Domain.dll
+C:\works\projetos\dotnet\LocationService\src\LocationService.Domain\obj\Release\netcoreapp2.0\LocationService.Domain.pdb
