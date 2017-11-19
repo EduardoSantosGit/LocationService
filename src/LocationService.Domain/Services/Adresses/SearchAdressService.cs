@@ -18,7 +18,7 @@ namespace LocationService.Domain.Services.Adresses
 
         public async Task<Adress> FindByZipCode(string zipCode)
         {
-            return await _adressesServices.GetAdressesScrap(zipCode);
+            return await _adressesServices.GetAdressesZipCode(zipCode);
         }
     }
 }

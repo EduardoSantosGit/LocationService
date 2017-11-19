@@ -18,7 +18,7 @@ namespace LocationService.IntegrationTest.Adress
         public async Task GetAdressesCep_WhenCepString_ReturnsPageNotNull()
         {
             var adressApi = CreateInstance();
-            var result = await adressApi.GetAdressesCep("01311200");
+            var result = await adressApi.GetAsync("01311200");
             Assert.NotNull(result);
         }
 
@@ -26,7 +26,7 @@ namespace LocationService.IntegrationTest.Adress
         public async Task GetAdressesCep_WhenCepStringNotFound_ReturnsPageNotFound()
         {
             var adressApi = CreateInstance();
-            var result = await adressApi.GetAdressesCep("0000000000");
+            var result = await adressApi.GetAsync("0000000000");
 
             var type = result is string;
             var pageData = result.Contains("DADOS NAO ENCONTRADOS");
@@ -40,7 +40,7 @@ namespace LocationService.IntegrationTest.Adress
         public async Task GetAdressesCep_WhenCepStringCaracterInvalid_ReturnsPageNotFound()
         {
             var adressApi = CreateInstance();
-            var result = await adressApi.GetAdressesCep("01311300a");
+            var result = await adressApi.GetAsync("01311300a");
 
             var type = result is string;
             var pageData = result.Contains("DADOS NAO ENCONTRADOS");
@@ -54,7 +54,7 @@ namespace LocationService.IntegrationTest.Adress
         public async Task GetAdressesCep_WhenCepStringValid_ReturnsPage()
         {
             var adressApi = CreateInstance();
-            var result = await adressApi.GetAdressesCep("01311300");
+            var result = await adressApi.GetAsync("01311300");
 
             var type = result is string;
             var pageData = result.Contains("DADOS ENCONTRADOS COM SUCESSO.");
@@ -68,7 +68,7 @@ namespace LocationService.IntegrationTest.Adress
         public async Task GetAdressesCep_WhenCepStringValidTrace_ReturnsPage()
         {
             var adressApi = CreateInstance();
-            var result = await adressApi.GetAdressesCep("01311-300");
+            var result = await adressApi.GetAsync("01311-300");
 
             var type = result is string;
             var pageData = result.Contains("DADOS ENCONTRADOS COM SUCESSO.");

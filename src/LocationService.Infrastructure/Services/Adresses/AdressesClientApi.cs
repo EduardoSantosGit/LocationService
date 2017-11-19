@@ -22,11 +22,11 @@ namespace LocationService.Infrastructure.Services.Adresses
             _apiUrl = "sistemas/buscacep/resultadoBuscaCepEndereco.cfm";
         }
 
-        public async Task<string> GetAdressesCep(string zipCode)
+        public async Task<string> GetAsync(string term)
         {
             var nvc = new List<KeyValuePair<string, string>>
             {
-                new KeyValuePair<string, string>("relaxation", zipCode),
+                new KeyValuePair<string, string>("relaxation", term),
                 new KeyValuePair<string, string>("tipoCEP", "ALL"),
                 new KeyValuePair<string, string>("semelhante", "N")
             };

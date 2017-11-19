@@ -16,7 +16,7 @@ namespace LocationService.Infrastructure.Services.Adresses
             _scrapParser = new ScrapParser();
         }
 
-        public Adress GetAdressesPage(string html)
+        public Adress GetAdressesPageCode(string html)
         {
             var table = _scrapParser.ScrapBlockPage(html, "<table class=\"tmptabela\">", "</table>");
             var lines = table.Split("<tr>");
@@ -31,6 +31,31 @@ namespace LocationService.Infrastructure.Services.Adresses
             };
 
             return adress;
+        }
+
+        public List<Adress> GetAdressesPageTerm(string html)
+        {
+            var table = _scrapParser.ScrapBlockPage(html, "<table class=\"tmptabela\">", "</table>");
+            var lines = table.Split("<tr");
+
+            var listAdress = new List<Adress>();
+
+            for(var i=2;i< lines.Length; i++)
+            {
+                var columns = lines[i].Split("<td");
+
+                var adress = new Adress
+                {
+                    Street = _scrapParser.ScrapBlockPage(columns[1], "\">", "</td>")?.Trim(),
+                    District = _scrapParser.ScrapBlockPage(columns[2], "\">", "</td>")?.Trim(),
+                    Locality = _scrapParser.ScrapBlockPage(columns[3], "\">", "</td>")?.Trim(),
+                    ZipCode = _scrapParser.ScrapBlockPage(columns[4], "\">", "</td>")?.Trim()
+                };
+
+                listAdress.Add(adress);
+            }
+
+            return listAdress;
         }
     }
 }

@@ -21,18 +21,34 @@ namespace LocationService.Infrastructure.Services.Adresses
             _scrapParser = new ScrapParser();
         }
 
-        public async Task<Adress> GetAdressesScrap(string zipCode)
+        public async Task<Adress> GetAdressesZipCode(string zipCode)
         {
-            var html = await _adressesClientApi.GetAdressesCep(zipCode);
+            var html = await _adressesClientApi.GetAsync(zipCode);
 
             var valid = _scrapParser.ContainsValue(html, "<p>DADOS ENCONTRADOS COM SUCESSO.</p>", true);
 
             if (valid)
             {
-                return _adressesServiceScrap.GetAdressesPage(html);
+                return _adressesServiceScrap.GetAdressesPageCode(html);
             }
             
             return null;
         }
+
+        public async Task<List<Adress>> GetAdressesTerm(string term)
+        {
+
+            var html = await _adressesClientApi.GetAsync(term);
+
+            var valid = _scrapParser.ContainsValue(html, "<p>DADOS ENCONTRADOS COM SUCESSO.</p>", true);
+
+            if (valid)
+            {
+                _adressesServiceScrap.GetAdressesPageTerm(html);
+            }
+
+            return null;
+        }
+
     }
 }

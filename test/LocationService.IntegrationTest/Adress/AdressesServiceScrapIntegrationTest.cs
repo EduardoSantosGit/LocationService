@@ -15,10 +15,10 @@ namespace LocationService.IntegrationTest.Adress
         public async Task GetAdressesPage_WhenHtmlData_ReturnsAdress()
         {
             var adressApi = new AdressesClientApi();
-            var result = await adressApi.GetAdressesCep("01311200");
+            var result = await adressApi.GetAsync("01311200");
 
             var scrap = CreateInstance();
-            var adress = scrap.GetAdressesPage(result);
+            var adress = scrap.GetAdressesPageCode(result);
 
             Assert.NotNull(adress);
             Assert.Equal("Avenida Paulista - de 1047 a 1865 - lado ímpar", adress.Street);
@@ -26,6 +26,22 @@ namespace LocationService.IntegrationTest.Adress
             Assert.Equal("São Paulo/SP", adress.Locality);
             Assert.Equal("01311-200", adress.ZipCode);
         }
-        
+
+        [Fact]
+        public async Task GetAdressesPage_WhenHtmlDataTerm_ReturnsListAdress()
+        {
+            var adressApi = new AdressesClientApi();
+            var result = await adressApi.GetAsync("Rua Ubaitaba");
+
+            var scrap = CreateInstance();
+            var adress = scrap.GetAdressesPageTerm(result);
+
+            Assert.NotNull(adress);
+            //Assert.Equal("Avenida Paulista - de 1047 a 1865 - lado ímpar", adress.Street);
+          //  Assert.Equal("Bela Vista", adress.District);
+           // Assert.Equal("São Paulo/SP", adress.Locality);
+          //  Assert.Equal("01311-200", adress.ZipCode);
+        }
+
     }
 }

@@ -8,6 +8,6 @@ namespace LocationService.Domain.Interfaces
 {
     public interface IAdressesServices
     {
-        Task<Adress> GetAdressesScrap(string zipCode);
+        Task<Adress> GetAdressesZipCode(string zipCode);
     }
 }
