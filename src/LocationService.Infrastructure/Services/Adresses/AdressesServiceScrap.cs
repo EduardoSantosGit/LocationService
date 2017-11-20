@@ -74,8 +74,6 @@ namespace LocationService.Infrastructure.Services.Adresses
                             });
                         }
                     }
-
-
                 }
                 else
                 {

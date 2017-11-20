@@ -78,5 +78,19 @@ namespace LocationService.IntegrationTest.Adress
             Assert.True(pageData);
         }
 
+        [Fact]
+        public async Task GetAdressesCep_WhenNameStreet_ReturnsPage()
+        {
+            var adressApi = CreateInstance();
+            var result = await adressApi.GetAsync("Avenida Vital Brasil");
+
+            var type = result is string;
+            var pageData = result.Contains("DADOS ENCONTRADOS COM SUCESSO.");
+
+            Assert.NotNull(result);
+            Assert.True(type);
+            Assert.True(pageData);
+        }
+
     }
 }
