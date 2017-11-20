@@ -18,9 +18,16 @@ namespace LocationService.Api.Controllers
         }
 
         [HttpGet("zipCode/{zipcode}")]
-        public async Task<JsonResult> GetWorldsMarkets(string zipcode)
+        public async Task<JsonResult> GetAdressCode(string zipcode)
         {
             var values = await _searchAdressService.FindByZipCode(zipcode);
+            return Json(values);
+        }
+
+        [HttpGet("term/{term}")]
+        public async Task<JsonResult> GetAdressTerm(string term)
+        {
+            var values = await _searchAdressService.FindByTerm(term);
             return Json(values);
         }
     }

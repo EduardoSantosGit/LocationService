@@ -44,7 +44,7 @@ namespace LocationService.Infrastructure.Services.Adresses
 
             if (valid)
             {
-                _adressesServiceScrap.GetAdressesPageTerm(html);
+                return _adressesServiceScrap.GetAdressesPageTerm(html);
             }
 
             return null;

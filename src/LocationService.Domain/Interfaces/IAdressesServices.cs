@@ -9,5 +9,6 @@ namespace LocationService.Domain.Interfaces
     public interface IAdressesServices
     {
         Task<Adress> GetAdressesZipCode(string zipCode);
+        Task<List<Adress>> GetAdressesTerm(string term);
     }
 }
