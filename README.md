@@ -2,9 +2,9 @@
 
 ## Functionalities
 
-###### search via zip
+- Search via zip
 
-###### search via state, city, streets ...
+- Search via state, city, streets ...
 
 ## Technology
 
