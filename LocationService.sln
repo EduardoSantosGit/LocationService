@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{DF2FC70C-D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocationService.IntegrationTest", "test\LocationService.IntegrationTest\LocationService.IntegrationTest.csproj", "{6048B690-0DFB-4F39-8CC2-9485FFE18267}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationService.Test", "LocationService.Test\LocationService.Test.csproj", "{DDA96156-37B5-4063-B5B3-28755A41179B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationService.Test", "test\LocationService.Test\LocationService.Test.csproj", "{DDA96156-37B5-4063-B5B3-28755A41179B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

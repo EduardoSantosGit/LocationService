@@ -50,7 +50,7 @@ namespace LocationService.IntegrationTest.Adress
             var adress = scrap.GetAdressesPageTerm(result);
 
             Assert.NotNull(adress);
-            Assert.Equal(24, adress.Count);
+            Assert.Equal(1, adress.Count);
         }
 
     }
