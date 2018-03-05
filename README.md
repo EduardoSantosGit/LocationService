@@ -8,4 +8,4 @@
 
 ## Technology
 
-- Dotnet Core
+- Dotnet Core, Docker
