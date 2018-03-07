@@ -36,10 +36,6 @@ namespace LocationService.Infrastructure.Services.Adresses
 
             var response = await _httpClient.SendAsync(request);
 
-
-            var e = HttpUtility.HtmlDecode("");
-
-
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 return HttpUtility.HtmlDecode(response.Content.ReadAsStringAsync().Result);

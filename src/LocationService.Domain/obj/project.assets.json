@@ -664,7 +664,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\eduar\\.nuget\\packages\\": {},
+    "C:\\Users\\staff\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -673,24 +673,26 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\works\\projetos\\dotnet\\LocationService\\src\\LocationService.Domain\\LocationService.Domain.csproj",
+      "projectUniqueName": "C:\\works\\study\\LocationService\\src\\LocationService.Domain\\LocationService.Domain.csproj",
       "projectName": "LocationService.Domain",
-      "projectPath": "C:\\works\\projetos\\dotnet\\LocationService\\src\\LocationService.Domain\\LocationService.Domain.csproj",
-      "packagesPath": "C:\\Users\\eduar\\.nuget\\packages\\",
-      "outputPath": "C:\\works\\projetos\\dotnet\\LocationService\\src\\LocationService.Domain\\obj\\",
+      "projectPath": "C:\\works\\study\\LocationService\\src\\LocationService.Domain\\LocationService.Domain.csproj",
+      "packagesPath": "C:\\Users\\staff\\.nuget\\packages\\",
+      "outputPath": "C:\\works\\study\\LocationService\\src\\LocationService.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\eduar\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\staff\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\ServiceFabricSDK.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\Microsoft SDKs\\Service Fabric\\packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -709,7 +711,7 @@
         "dependencies": {
           "Microsoft.NETCore.App": {
             "target": "Package",
-            "version": "2.0.0",
+            "version": "[2.0.0, )",
             "autoReferenced": true
           }
         },
