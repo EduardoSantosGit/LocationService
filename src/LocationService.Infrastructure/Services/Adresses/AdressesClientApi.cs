@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LocationService.Infrastructure.Common;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -8,16 +9,13 @@ using System.Web;
 
 namespace LocationService.Infrastructure.Services.Adresses
 {
-    public class AdressesClientApi
+    public class AdressesClientApi : ProviderHttp
     {
-        public readonly HttpClient _httpClient;
         public readonly string _baseUrl;
         public readonly string _apiUrl;
 
-        public AdressesClientApi(HttpClient httpClient = null)
+        public AdressesClientApi(string baseUrl, TimeSpan timeout) : base(baseUrl, timeout)
         {
-            _httpClient = httpClient ?? new HttpClient();
-            _httpClient.Timeout = TimeSpan.FromSeconds(30);
             _baseUrl = "http://www.buscacep.correios.com.br/";
             _apiUrl = "sistemas/buscacep/resultadoBuscaCepEndereco.cfm";
         }

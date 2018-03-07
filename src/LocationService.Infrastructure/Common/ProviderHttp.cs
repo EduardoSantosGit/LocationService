@@ -12,7 +12,6 @@ namespace LocationService.Infrastructure.Common
  
         public ProviderHttp(string baseUrl, TimeSpan timeout)
         {
-
             _httpClient.Timeout = timeout;
 
         }
