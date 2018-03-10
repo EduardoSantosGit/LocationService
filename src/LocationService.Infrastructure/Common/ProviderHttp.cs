@@ -7,13 +7,12 @@ namespace LocationService.Infrastructure.Common
 {
     public class ProviderHttp
     {
-
         protected readonly HttpClient _httpClient;
  
         public ProviderHttp(string baseUrl, TimeSpan timeout)
         {
+            _httpClient = new HttpClient();
             _httpClient.Timeout = timeout;
-
         }
 
     }

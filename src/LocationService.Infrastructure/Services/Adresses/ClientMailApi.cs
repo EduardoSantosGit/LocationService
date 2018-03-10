@@ -9,12 +9,12 @@ using System.Web;
 
 namespace LocationService.Infrastructure.Services.Adresses
 {
-    public class AdressesClientApi : ProviderHttp
+    public class ClientMailApi : ProviderHttp
     {
         public readonly string _baseUrl;
         public readonly string _apiUrl;
 
-        public AdressesClientApi(string baseUrl, TimeSpan timeout) : base(baseUrl, timeout)
+        public ClientMailApi(string baseUrl, TimeSpan timeout) : base(baseUrl, timeout)
         {
             _baseUrl = "http://www.buscacep.correios.com.br/";
             _apiUrl = "sistemas/buscacep/resultadoBuscaCepEndereco.cfm";
