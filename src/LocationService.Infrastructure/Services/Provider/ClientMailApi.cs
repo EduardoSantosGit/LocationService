@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace LocationService.Infrastructure.Services.Adresses
+namespace LocationService.Infrastructure.Services.Provider
 {
     public class ClientMailApi : ProviderHttp
     {
