@@ -15,19 +15,14 @@ namespace LocationService.Infrastructure.Common
  
         public ProviderHttp(string baseUrl, TimeSpan timeout)
         {
-            Client = new HttpClient();
-            Client.Timeout = timeout;
+            Client = new HttpClient
+            {
+                Timeout = timeout
+            };
         }
 
         public async Task<string> PostFormUrlEncodedAsync(string url, List<KeyValuePair<string,string>> nvc)
         {
-            //var nvc = new List<KeyValuePair<string, string>>
-            //{
-            //    new KeyValuePair<string, string>("relaxation", term),
-            //    new KeyValuePair<string, string>("tipoCEP", "ALL"),
-            //    new KeyValuePair<string, string>("semelhante", "N")
-            //};
-
             var request = new HttpRequestMessage(HttpMethod.Post,
                 BaseUrl + url)
             { Content = new FormUrlEncodedContent(nvc) };
