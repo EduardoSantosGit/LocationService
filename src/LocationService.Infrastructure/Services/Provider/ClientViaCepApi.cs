@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace LocationService.Infrastructure.Services.Provider
 {
@@ -14,8 +15,15 @@ namespace LocationService.Infrastructure.Services.Provider
         {
 
             _baseUrl = "https://viacep.com.br/";
-            _apiUrl = "";
+            _apiUrl = "ws/";
 
+        }
+
+        public async Task<string> GetAsync(string zipCode)
+        {
+
+
+            return null;
         }
 
     }

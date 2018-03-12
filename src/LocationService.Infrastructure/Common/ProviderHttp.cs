@@ -37,5 +37,16 @@ namespace LocationService.Infrastructure.Common
             return null;
         }
 
+        public async Task<string> GetAsync(string url)
+        {
+            var response = await Client.GetAsync(url);
+
+            if(response.StatusCode == HttpStatusCode.OK)
+            {
+                return HttpUtility.HtmlDecode(response.Content.ReadAsStringAsync().Result);
+            }
+
+            return null;
+        }
     }
 }
