@@ -19,11 +19,11 @@ namespace LocationService.Infrastructure.Services.Provider
 
         }
 
-        public async Task<string> GetAsync(string zipCode)
+        public async Task<string> GetAsyncZipCode(string zipCode)
         {
+            var result = await this.GetAsync(_baseUrl + _apiUrl + zipCode + "/json");
 
-
-            return null;
+            return result;
         }
 
     }
