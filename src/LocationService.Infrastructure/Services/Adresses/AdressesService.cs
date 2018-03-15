@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace LocationService.Infrastructure.Services.Adresses
 {
-    public class AdressesService : IAdressesServices
+    public class AdressesMailService : IAddressProvider
     {
-        public readonly AdressesClientApi _adressesClientApi;
+        public readonly ClientMailApi _adressesClientApi;
         public readonly AdressesServiceScrap _adressesServiceScrap;
         public readonly ScrapParser _scrapParser;
 
-        public AdressesService(AdressesClientApi adressesClientApi)
+        public AdressesMailService(ClientMailApi adressesClientApi)
         {
             _adressesClientApi = adressesClientApi;
             _adressesServiceScrap = new AdressesServiceScrap();

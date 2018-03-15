@@ -7,14 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace LocationService.Infrastructure.Services.Adresses
+namespace LocationService.Infrastructure.Services.Provider
 {
-    public class AdressesClientApi : ProviderHttp
+    public class ClientMailApi : ProviderHttp
     {
         public readonly string _baseUrl;
         public readonly string _apiUrl;
 
-        public AdressesClientApi(string baseUrl, TimeSpan timeout) : base(baseUrl, timeout)
+        public ClientMailApi(string baseUrl, TimeSpan timeout) : base(baseUrl, timeout)
         {
             _baseUrl = "http://www.buscacep.correios.com.br/";
             _apiUrl = "sistemas/buscacep/resultadoBuscaCepEndereco.cfm";
@@ -29,17 +29,9 @@ namespace LocationService.Infrastructure.Services.Adresses
                 new KeyValuePair<string, string>("semelhante", "N")
             };
 
-            var request = new HttpRequestMessage(HttpMethod.Post,
-                _baseUrl + _apiUrl) { Content = new FormUrlEncodedContent(nvc) };
+            var result = await this.PostFormUrlEncodedAsync(_apiUrl, nvc);
 
-            var response = await _httpClient.SendAsync(request);
-
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                return HttpUtility.HtmlDecode(response.Content.ReadAsStringAsync().Result);
-            }
-
-            return null;
+            return result;
         }
     }
 }
