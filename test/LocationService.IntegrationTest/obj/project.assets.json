@@ -1662,10 +1662,7 @@
       },
       "LocationService.Domain/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v2.0",
-        "dependencies": {
-          "Microsoft.NETCore.App": "2.0.0"
-        },
+        "framework": ".NETStandard,Version=v2.0",
         "compile": {
           "bin/placeholder/LocationService.Domain.dll": {}
         },
@@ -1675,10 +1672,9 @@
       },
       "LocationService.Infrastructure/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v2.0",
+        "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "LocationService.Domain": "1.0.0",
-          "Microsoft.NETCore.App": "2.0.0"
+          "LocationService.Domain": "1.0.0"
         },
         "compile": {
           "bin/placeholder/LocationService.Infrastructure.dll": {}
@@ -5682,7 +5678,10 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\Microsoft SDKs\\Service Fabric\\packages": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nfe-pkg.pkgs.visualstudio.com/_packaging/all/nuget/v2/": {},
+        "https://nfe-pkg.pkgs.visualstudio.com/_packaging/all/nuget/v3/": {},
+        "https://nfe-pkg.pkgs.visualstudio.com/_packaging/all/nuget/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp2.0": {

@@ -18,6 +18,7 @@ namespace LocationService.Infrastructure.Services.Provider
         {
             _baseUrl = "http://www.buscacep.correios.com.br/";
             _apiUrl = "sistemas/buscacep/resultadoBuscaCepEndereco.cfm";
+
         }
 
         public async Task<string> GetAsync(string term)
@@ -31,7 +32,7 @@ namespace LocationService.Infrastructure.Services.Provider
 
             var result = await this.PostFormUrlEncodedAsync(_apiUrl, nvc);
 
-            return result;
+            return null;
         }
     }
 }
