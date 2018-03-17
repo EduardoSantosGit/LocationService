@@ -35,8 +35,12 @@ namespace LocationService.Infrastructure.Common
 
         public async Task<HttpResponseMessage> GetAsync(string url)
         {
-            var response = await Client.GetAsync(url);
-            return response;
+            return await Client.GetAsync(url);
+        }
+
+        public async Task<HttpResponseMessage> PostAsync(string url, HttpContent httpContent)
+        {
+            return await Client.PostAsync(url, httpContent);
         }
     }
 }

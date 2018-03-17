@@ -1,6 +1,7 @@
 ﻿using LocationService.Domain.Interfaces;
 using LocationService.Domain.Models;
 using LocationService.Infrastructure.Common;
+using LocationService.Infrastructure.Services.Provider;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,7 +24,7 @@ namespace LocationService.Infrastructure.Services.Adresses
 
         public async Task<Adress> GetAdressesZipCode(string zipCode)
         {
-            var html = await _adressesClientApi.GetAsync(zipCode);
+            var html = await _adressesClientApi.PostSendAsync(zipCode);
 
             var valid = _scrapParser.ContainsValue(html, "<p>DADOS ENCONTRADOS COM SUCESSO.</p>", true);
 
@@ -38,7 +39,7 @@ namespace LocationService.Infrastructure.Services.Adresses
         public async Task<List<Adress>> GetAdressesTerm(string term)
         {
 
-            var html = await _adressesClientApi.GetAsync(term);
+            var html = await _adressesClientApi.PostSendAsync(term);
 
             var valid = _scrapParser.ContainsValue(html, "<p>DADOS ENCONTRADOS COM SUCESSO.</p>", true);
 

@@ -1662,7 +1662,10 @@
       },
       "LocationService.Domain/1.0.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "Microsoft.NETCore.App": "2.0.0"
+        },
         "compile": {
           "bin/placeholder/LocationService.Domain.dll": {}
         },
@@ -1672,9 +1675,10 @@
       },
       "LocationService.Infrastructure/1.0.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
+        "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
-          "LocationService.Domain": "1.0.0"
+          "LocationService.Domain": "1.0.0",
+          "Microsoft.NETCore.App": "2.0.0"
         },
         "compile": {
           "bin/placeholder/LocationService.Infrastructure.dll": {}

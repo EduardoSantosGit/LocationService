@@ -23,7 +23,7 @@ namespace LocationService.Infrastructure.Services.Provider
         {
             var result = await this.GetAsync(_baseUrl + _apiUrl + zipCode + "/json");
 
-            return result;
+            return null;
         }
 
     }
