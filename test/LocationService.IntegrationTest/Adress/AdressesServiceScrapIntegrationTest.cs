@@ -1,4 +1,6 @@
 ﻿using LocationService.Infrastructure.Services.Adresses;
+using LocationService.Infrastructure.Services.Provider;
+using System;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -14,8 +16,8 @@ namespace LocationService.IntegrationTest.Adress
         [Fact]
         public async Task GetAdressesPage_WhenHtmlData_ReturnsAdress()
         {
-            var adressApi = new AdressesClientApi();
-            var result = await adressApi.GetAsync("01311200");
+            var adressApi = new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.MaxValue);
+            var result = await adressApi.PostSendAsync("01311200");
 
             var scrap = CreateInstance();
             var adress = scrap.GetAdressesPageCode(result);
@@ -30,8 +32,8 @@ namespace LocationService.IntegrationTest.Adress
         [Fact]
         public async Task GetAdressesPage_WhenHtmlDataTerm_ReturnsListAdress()
         {
-            var adressApi = new AdressesClientApi();
-            var result = await adressApi.GetAsync("Avenida Vital Brasil");
+            var adressApi = new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.MaxValue);
+            var result = await adressApi.PostSendAsync("Avenida Vital Brasil");
 
             var scrap = CreateInstance();
             var adress = scrap.GetAdressesPageTerm(result);
@@ -43,8 +45,8 @@ namespace LocationService.IntegrationTest.Adress
         [Fact]
         public async Task GetAdressesPage_WhenHtmlDataTermZipcode_ReturnsListAdress()
         {
-            var adressApi = new AdressesClientApi();
-            var result = await adressApi.GetAsync("01311200");
+            var adressApi = new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.MaxValue);
+            var result = await adressApi.PostSendAsync("01311200");
 
             var scrap = CreateInstance();
             var adress = scrap.GetAdressesPageTerm(result);
