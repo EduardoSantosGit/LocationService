@@ -20,6 +20,8 @@ namespace LocationService.Infrastructure.Common
             {
                 Timeout = timeout
             };
+
+            BaseUrl = baseUrl;
         }
 
         public async Task<HttpResponseMessage> PostFormUrlEncodedAsync(string url, List<KeyValuePair<string,string>> nvc)

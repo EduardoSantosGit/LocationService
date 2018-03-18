@@ -19,7 +19,6 @@ namespace LocationService.Infrastructure.Services.Provider
             _baseUrl = "http://www.buscacep.correios.com.br/";
             _apiUrl = "sistemas/buscacep/resultadoBuscaCepEndereco.cfm";
 
-            Client.DefaultRequestHeaders.Add("Connection", "keep-alive");
             Client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36");
             Client.DefaultRequestHeaders.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
             Client.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate");
