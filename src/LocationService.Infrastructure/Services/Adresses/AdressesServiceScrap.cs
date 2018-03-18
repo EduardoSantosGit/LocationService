@@ -19,8 +19,9 @@ namespace LocationService.Infrastructure.Services.Adresses
         public Adress GetAdressesPageCode(string html)
         {
             var table = _scrapParser.ScrapBlockPage(html, "<table class=\"tmptabela\">", "</table>");
-            var lines = table.Split("<tr>");
-            var columns = lines[1].Split("<td");
+
+            var lines = table.SplitString("<tr>");
+            var columns = lines[1].SplitString("<td");
 
             var adress = new Adress
             {
@@ -36,20 +37,20 @@ namespace LocationService.Infrastructure.Services.Adresses
         public List<Adress> GetAdressesPageTerm(string html)
         {
             var table = _scrapParser.ScrapBlockPage(html, "<table class=\"tmptabela\">", "</table>");
-            var lines = table.Split("<tr");
+            var lines = table.SplitString("<tr");
 
             var listAdress = new List<Adress>();
             var listAdressDouble = new List<Adress>();
 
             for (var i = 2; i < lines.Length; i++)
             {
-                var columns = lines[i].Split("<td");
+                var columns = lines[i].SplitString("<td");
 
                 var col = _scrapParser.ScrapBlockPage(columns[1], "\">", "</td>")?.Trim();
 
                 if (col.Contains("<br"))
                 {
-                    var duplicate = col.Split("<br>");
+                    var duplicate = col.SplitString("<br>");
 
                     for (var j = 0; j < duplicate.Length; j++)
                     {
