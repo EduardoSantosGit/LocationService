@@ -12,14 +12,14 @@ namespace LocationService.IntegrationTest.Adress
     {
         public ClientMailApi CreateInstance()
         {
-            return new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.MaxValue);
+            return new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.FromMinutes(2));
         }
 
         [Fact]
         public async Task GetAdressesCep_WhenCepString_ReturnsPageNotNull()
         {
             var adressApi = CreateInstance();
-            var result = await adressApi.GetAsync("01311200");
+            var result = await adressApi.PostSendAsync("01311200");
             Assert.NotNull(result);
         }
 
