@@ -1,4 +1,5 @@
 ﻿using LocationService.Infrastructure.Services.Adresses;
+using LocationService.Infrastructure.Services.Provider;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,9 +10,9 @@ namespace LocationService.IntegrationTest.Adress
 {
     public class AdressesClientApiIntegrationTest
     {
-        public AdressesClientApi CreateInstance()
+        public ClientMailApi CreateInstance()
         {
-            return new AdressesClientApi();
+            return new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.MaxValue);
         }
 
         [Fact]
@@ -26,7 +27,7 @@ namespace LocationService.IntegrationTest.Adress
         public async Task GetAdressesCep_WhenCepStringNotFound_ReturnsPageNotFound()
         {
             var adressApi = CreateInstance();
-            var result = await adressApi.GetAsync("0000000000");
+            var result = await adressApi.PostSendAsync("0000000000");
 
             var type = result is string;
             var pageData = result.Contains("DADOS NAO ENCONTRADOS");
@@ -40,7 +41,7 @@ namespace LocationService.IntegrationTest.Adress
         public async Task GetAdressesCep_WhenCepStringCaracterInvalid_ReturnsPageNotFound()
         {
             var adressApi = CreateInstance();
-            var result = await adressApi.GetAsync("01311300a");
+            var result = await adressApi.PostSendAsync("01311300a");
 
             var type = result is string;
             var pageData = result.Contains("DADOS NAO ENCONTRADOS");
@@ -54,7 +55,7 @@ namespace LocationService.IntegrationTest.Adress
         public async Task GetAdressesCep_WhenCepStringValid_ReturnsPage()
         {
             var adressApi = CreateInstance();
-            var result = await adressApi.GetAsync("01311300");
+            var result = await adressApi.PostSendAsync("01311300");
 
             var type = result is string;
             var pageData = result.Contains("DADOS ENCONTRADOS COM SUCESSO.");
@@ -68,7 +69,7 @@ namespace LocationService.IntegrationTest.Adress
         public async Task GetAdressesCep_WhenCepStringValidTrace_ReturnsPage()
         {
             var adressApi = CreateInstance();
-            var result = await adressApi.GetAsync("01311-300");
+            var result = await adressApi.PostSendAsync("01311-300");
 
             var type = result is string;
             var pageData = result.Contains("DADOS ENCONTRADOS COM SUCESSO.");
@@ -82,7 +83,7 @@ namespace LocationService.IntegrationTest.Adress
         public async Task GetAdressesCep_WhenNameStreet_ReturnsPage()
         {
             var adressApi = CreateInstance();
-            var result = await adressApi.GetAsync("Avenida Vital Brasil");
+            var result = await adressApi.PostSendAsync("Avenida Vital Brasil");
 
             var type = result is string;
             var pageData = result.Contains("DADOS ENCONTRADOS COM SUCESSO.");
