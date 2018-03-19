@@ -1,7 +1,9 @@
 ﻿using LightInject;
 using LocationService.Api.Controllers;
+using LocationService.Domain.Interfaces;
 using LocationService.Domain.Services.Adresses;
 using LocationService.Infrastructure.Services.Adresses;
+using LocationService.Infrastructure.Services.Provider;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -19,7 +21,7 @@ namespace LocationService.Api.Configure
             var containerOptions = new ContainerOptions { EnablePropertyInjection = false };
             var container = new ServiceContainer(containerOptions);
 
-            container.RegisterInstance(new AdressesService(new AdressesClientApi()));
+            container.RegisterInstance(new AdressesService(new IAddressProvider[] { new ClientMailApi("",TimeSpan.MaxValue) }));
 
             container.RegisterInstance(new SearchAdressService(container.GetInstance<AdressesService>()));
 
@@ -28,6 +30,11 @@ namespace LocationService.Api.Configure
             container.ScopeManagerProvider = new PerLogicalCallContextScopeManagerProvider();
 
             return container;
+        }
+
+        private static IAddressProvider ClientMailApi()
+        {
+            throw new NotImplementedException();
         }
     }
 }

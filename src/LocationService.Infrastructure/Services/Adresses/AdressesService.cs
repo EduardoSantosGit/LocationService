@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace LocationService.Infrastructure.Services.Adresses
 {
-    public class AdressesMailService : IAdressesServices
+    public class AdressesService : IAdressesServices
     {
-        public readonly ClientMailApi _adressesClientApi;
+        private readonly IEnumerable<IAddressProvider> _addressProvider;
 
-        public AdressesMailService()
+        public AdressesService(IEnumerable<IAddressProvider> addressProvider)
         {
+            _addressProvider = addressProvider;
         }
 
         public async Task<Adress> GetAdressesZipCode(string zipCode)
         {
-           
-            
+
             return null;
         }
 
