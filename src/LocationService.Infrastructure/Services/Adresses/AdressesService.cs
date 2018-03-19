@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace LocationService.Infrastructure.Services.Adresses
 {
@@ -20,6 +21,18 @@ namespace LocationService.Infrastructure.Services.Adresses
 
         public async Task<Adress> GetAdressesZipCode(string zipCode)
         {
+
+            var providerOne = _addressProvider.First();
+
+            var result = providerOne.GetAdressesZipCode(zipCode);
+
+            if(result == null)
+            {
+                foreach (var item in _addressProvider)
+                {
+
+                }
+            }
 
             return null;
         }
