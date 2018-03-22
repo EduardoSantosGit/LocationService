@@ -6,6 +6,8 @@
 
 - Search via state, city, streets ...
 
+- multiple data sources request
+
 ## Technology
 
-- Dotnet Core, Docker
+- Dotnet Standard, Docker
