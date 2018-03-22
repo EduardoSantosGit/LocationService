@@ -22,17 +22,22 @@ namespace LocationService.Infrastructure.Services.Adresses
         public async Task<Adress> GetAdressesZipCode(string zipCode)
         {
 
-            var providerOne = _addressProvider.First();
+            var serAvailable = _addressProvider.Count();
 
-            var result = providerOne.GetAdressesZipCode(zipCode);
-
-            if(result == null)
+            if(serAvailable > 0)
             {
-                foreach (var item in _addressProvider)
-                {
+                var providerOne = _addressProvider.First();
+                var result = await providerOne.GetAdressesZipCode(zipCode);
+                var ieAdress = default(IEnumerable<Adress>);
 
+                if (result == null)
+                {
+                    ieAdress = _addressProvider.Skip(1).Select(x => x.GetAdressesZipCode(zipCode).Result)
+                                    .Where(y => y != null);
                 }
+
             }
+              
 
             return null;
         }
