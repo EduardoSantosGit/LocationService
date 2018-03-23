@@ -36,6 +36,12 @@ namespace LocationService.Infrastructure.Services.Adresses
                                     .Where(y => y != null);
                 }
 
+                foreach(var item in ieAdress)
+                {
+                    if(item != null)
+                        return item;
+                }
+
             }
               
 
