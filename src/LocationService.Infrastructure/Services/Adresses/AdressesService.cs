@@ -23,24 +23,26 @@ namespace LocationService.Infrastructure.Services.Adresses
         {
 
             var serAvailable = _addressProvider.Count();
+            var ieAdress = default(IEnumerable<Adress>);
+            var result = default(Adress);
 
-            if(serAvailable > 0)
+            if (serAvailable > 0)
             {
                 var providerOne = _addressProvider.First();
-                var result = await providerOne.GetAdressesZipCode(zipCode);
-                var ieAdress = default(IEnumerable<Adress>);
-
+                result = await providerOne.GetAdressesZipCode(zipCode);
+                
                 if (result == null)
                 {
                     ieAdress = _addressProvider.Skip(1).Select(x => x.GetAdressesZipCode(zipCode).Result)
                                     .Where(y => y != null);
+
+                    if (ieAdress.Count() > 0)
+                        return ieAdress.ElementAt(0);
                 }
 
-                if(ieAdress.Count() > 0)
-                    return ieAdress.ElementAt(0);
             }
               
-            return null;
+            return result;
         }
 
         public async Task<List<Adress>> GetAdressesTerm(string term)
