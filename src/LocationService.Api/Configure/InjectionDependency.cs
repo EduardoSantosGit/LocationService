@@ -21,7 +21,7 @@ namespace LocationService.Api.Configure
             var containerOptions = new ContainerOptions { EnablePropertyInjection = false };
             var container = new ServiceContainer(containerOptions);
 
-            container.RegisterInstance(new AdressesService(new IAddressProvider[] { new ClientMailApi("",TimeSpan.MaxValue) }));
+            container.RegisterInstance(new AdressesService(new IAddressProvider[] { new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.FromSeconds(30)) }));
 
             container.RegisterInstance(new SearchAdressService(container.GetInstance<AdressesService>()));
 
