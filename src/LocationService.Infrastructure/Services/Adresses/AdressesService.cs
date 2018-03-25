@@ -36,22 +36,29 @@ namespace LocationService.Infrastructure.Services.Adresses
                                     .Where(y => y != null);
                 }
 
-                foreach(var item in ieAdress)
-                {
-                    if(item != null)
-                        return item;
-                }
-
+                if(ieAdress.Count() > 0)
+                    return ieAdress.ElementAt(0);
             }
               
-
             return null;
         }
 
         public async Task<List<Adress>> GetAdressesTerm(string term)
         {
+            var serAvailable = _addressProvider.Count();
 
-            
+            if (serAvailable > 0)
+            {
+                var providerOne = _addressProvider.First();
+                var result = await providerOne.GetAdressesZipCode(term);
+                var ieAdress = default(IEnumerable<List<Adress>>);
+
+                if (result == null)
+                {
+                   
+                }
+
+            }
 
             return null;
         }
