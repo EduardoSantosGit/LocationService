@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.0": {
+      "CacheManager.Core/1.1.2": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.2/CacheManager.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.2/CacheManager.Core.dll": {}
+        }
+      },
       "Microsoft.NETCore.Platforms/1.1.0": {
         "type": "package",
         "compile": {
@@ -39,6 +51,21 @@
     }
   },
   "libraries": {
+    "CacheManager.Core/1.1.2": {
+      "sha512": "deSLMAgnf1sNpX7R2sDGGbpxvw1+yiyK180dYSadtJjCpXBgMiTkwGpmC1RI15ZmDjUAf6uv9kS28DTOVAlNlg==",
+      "type": "package",
+      "path": "cachemanager.core/1.1.2",
+      "files": [
+        "cachemanager.core.1.1.2.nupkg.sha512",
+        "cachemanager.core.nuspec",
+        "lib/net40/CacheManager.Core.dll",
+        "lib/net40/CacheManager.Core.xml",
+        "lib/net45/CacheManager.Core.dll",
+        "lib/net45/CacheManager.Core.xml",
+        "lib/netstandard1.2/CacheManager.Core.dll",
+        "lib/netstandard1.2/CacheManager.Core.xml"
+      ]
+    },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "sha512": "oLRKis0ihNN3o/FXfrYqsEZZOyzCjQbEJxJ0ANbilSCUk+jf4VK7ZikA0KIq55uj2S7WSem4x/4hcI4nSW93Nw==",
       "type": "package",
@@ -188,6 +215,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
+      "CacheManager.Core >= 1.1.2",
       "LocationService.Domain >= 1.0.0",
       "NETStandard.Library >= 2.0.1"
     ]
@@ -245,6 +273,10 @@
     "frameworks": {
       "netstandard2.0": {
         "dependencies": {
+          "CacheManager.Core": {
+            "target": "Package",
+            "version": "[1.1.2, )"
+          },
           "NETStandard.Library": {
             "suppressParent": "All",
             "target": "Package",

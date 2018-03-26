@@ -1,4 +1,5 @@
-﻿using LightInject;
+﻿using CacheManager.Core;
+using LightInject;
 using LocationService.Api.Controllers;
 using LocationService.Domain.Interfaces;
 using LocationService.Domain.Services.Adresses;
@@ -20,6 +21,11 @@ namespace LocationService.Api.Configure
 
             var containerOptions = new ContainerOptions { EnablePropertyInjection = false };
             var container = new ServiceContainer(containerOptions);
+
+            var cache = CacheFactory.Build("getStartedCache", settings =>
+            {
+                settings.WithSystemRuntimeCacheHandle("handleName");
+            });
 
             container.RegisterInstance(new AdressesService(new IAddressProvider[] { new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.FromSeconds(30)) }));
 
