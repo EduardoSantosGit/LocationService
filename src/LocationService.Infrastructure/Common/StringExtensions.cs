@@ -34,5 +34,16 @@ namespace LocationService.Infrastructure.Common
             return StringNormalizationExtensions.Normalize(sb.ToString(), NormalizationForm.FormC);
         }
 
+        public static string RemoveNonNumeric(this string source)
+        {
+            string empty = string.Empty;
+            for (int index = 0; index < source.Length; ++index)
+            {
+                if (char.IsNumber(source[index]))
+                    empty += (string)(object)source[index];
+            }
+            return empty;
+        }
+
     }
 }
