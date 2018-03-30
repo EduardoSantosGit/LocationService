@@ -2,6 +2,7 @@
 using LightInject;
 using LocationService.Api.Controllers;
 using LocationService.Domain.Interfaces;
+using LocationService.Domain.Models;
 using LocationService.Domain.Services.Adresses;
 using LocationService.Infrastructure.Services.Adresses;
 using LocationService.Infrastructure.Services.Provider;
@@ -22,12 +23,16 @@ namespace LocationService.Api.Configure
             var containerOptions = new ContainerOptions { EnablePropertyInjection = false };
             var container = new ServiceContainer(containerOptions);
 
-            var cache = CacheFactory.Build("getStartedCache", settings =>
+            var cfg = ConfigurationBuilder.BuildConfiguration(settings =>
             {
-                settings.WithSystemRuntimeCacheHandle("handleName");
+                settings.WithUpdateMode(CacheUpdateMode.Up)
+                        .WithHandle(typeof(Object))
+                        .WithExpiration(ExpirationMode.Sliding, TimeSpan.FromSeconds(10));
             });
 
-            container.RegisterInstance(new AdressesService(new IAddressProvider[] { new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.FromSeconds(30)) }));
+            var cache = CacheFactory.FromConfiguration<Adress>("AdressCache", cfg);
+
+            container.RegisterInstance(new AdressesService(new IAddressProvider[] { new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.FromSeconds(30)) }, cache));
 
             container.RegisterInstance(new SearchAdressService(container.GetInstance<AdressesService>()));
 
