@@ -7,16 +7,19 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using CacheManager.Core;
 
 namespace LocationService.Infrastructure.Services.Adresses
 {
     public class AdressesService : IAdressesServices
     {
         private readonly IEnumerable<IAddressProvider> _addressProvider;
+        private readonly ICacheManager<Adress> _cacheManager;
 
-        public AdressesService(IEnumerable<IAddressProvider> addressProvider)
+        public AdressesService(IEnumerable<IAddressProvider> addressProvider, ICacheManager<Adress> _cache)
         {
             _addressProvider = addressProvider;
+            _cacheManager = _cache;
         }
 
         public async Task<Adress> GetAdressesZipCode(string zipCode)
