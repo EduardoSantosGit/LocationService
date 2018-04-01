@@ -45,9 +45,14 @@ namespace LocationService.Infrastructure.Common
             return empty;
         }
 
-         public static string FormatWith(this string source, params object[] parameters)
+        public static string FormatWith(this string source, params object[] parameters)
         {
             return string.Format(CultureInfo.InvariantCulture, source, parameters);
+        }
+
+        public static bool IsNullOrEmpty(this string source)
+        {
+            return string.IsNullOrEmpty(source);
         }
 
     }
