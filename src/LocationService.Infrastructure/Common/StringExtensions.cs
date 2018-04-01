@@ -55,5 +55,10 @@ namespace LocationService.Infrastructure.Common
             return string.IsNullOrEmpty(source);
         }
 
+        public static bool IsNullOrWhiteSpace(this string source)
+        {
+            return string.IsNullOrWhiteSpace(source);
+        }
+
     }
 }
