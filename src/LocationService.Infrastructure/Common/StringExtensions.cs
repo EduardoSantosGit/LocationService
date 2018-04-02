@@ -60,5 +60,18 @@ namespace LocationService.Infrastructure.Common
             return string.IsNullOrWhiteSpace(source);
         }
 
+         public static string RemoveNonAlphaNumeric(this string source)
+        {
+            if (string.IsNullOrWhiteSpace(source))
+                return string.Empty;
+            return new string(Array.FindAll<char>(source.ToCharArray(), (Predicate<char>)(c =>
+            {
+                if (!char.IsLetterOrDigit(c) && !char.IsWhiteSpace(c))
+                    return (int)c == 45;
+                return true;
+            })));
+        }
+
+
     }
 }
