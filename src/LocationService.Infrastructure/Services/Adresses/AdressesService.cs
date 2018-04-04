@@ -7,40 +7,63 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using CacheManager.Core;
 
 namespace LocationService.Infrastructure.Services.Adresses
 {
     public class AdressesService : IAdressesServices
     {
         private readonly IEnumerable<IAddressProvider> _addressProvider;
+        private readonly ICacheManager<Adress> _cacheManager;
 
-        public AdressesService(IEnumerable<IAddressProvider> addressProvider)
+        public AdressesService(IEnumerable<IAddressProvider> addressProvider, ICacheManager<Adress> _cache)
         {
             _addressProvider = addressProvider;
+            _cacheManager = _cache;
         }
 
         public async Task<Adress> GetAdressesZipCode(string zipCode)
         {
 
-            var providerOne = _addressProvider.First();
+            var serAvailable = _addressProvider.Count();
+            var ieAdress = default(IEnumerable<Adress>);
+            var result = default(Adress);
 
-            var result = providerOne.GetAdressesZipCode(zipCode);
-
-            if(result == null)
+            if (serAvailable > 0)
             {
-                foreach (var item in _addressProvider)
+                var providerOne = _addressProvider.First();
+                result = await providerOne.GetAdressesZipCode(zipCode);
+                
+                if (result == null)
                 {
+                    ieAdress = _addressProvider.Skip(1).Select(x => x.GetAdressesZipCode(zipCode).Result)
+                                    .Where(y => y != null);
 
+                    if (ieAdress.Count() > 0)
+                        return ieAdress.ElementAt(0);
                 }
-            }
 
-            return null;
+            }
+              
+            return result;
         }
 
         public async Task<List<Adress>> GetAdressesTerm(string term)
         {
+            var serAvailable = _addressProvider.Count();
 
-            
+            if (serAvailable > 0)
+            {
+                var providerOne = _addressProvider.First();
+                var result = await providerOne.GetAdressesZipCode(term);
+                var ieAdress = default(IEnumerable<List<Adress>>);
+
+                if (result == null)
+                {
+                   
+                }
+
+            }
 
             return null;
         }

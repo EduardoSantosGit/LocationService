@@ -19,10 +19,9 @@ namespace LocationService.Infrastructure.Services.Provider
         public readonly ScrapParser _scrapParser;
         public readonly AdressesServiceScrap _adressesServiceScrap;
 
-
         public ClientMailApi(string baseUrl, TimeSpan timeout) : base(baseUrl, timeout)
         {
-            _baseUrl = "http://www.buscacep.correios.com.br/";
+            _baseUrl = baseUrl ?? "http://www.buscacep.correios.com.br/";
             _apiUrl = "sistemas/buscacep/resultadoBuscaCepEndereco.cfm";
 
             Client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36");
