@@ -72,6 +72,16 @@ namespace LocationService.Infrastructure.Common
             })));
         }
 
+        public static string FixCep(this string cep)
+        {
+            if (cep != null)
+            {
+                cep = cep.Trim();
+                if (cep.IndexOf("-") < 0 && cep.Length == 8)
+                    cep = cep.Insert(5, "-");
+            }
+            return cep;
+        }
 
     }
 }
