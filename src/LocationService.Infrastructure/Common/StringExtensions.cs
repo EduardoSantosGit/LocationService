@@ -72,6 +72,13 @@ namespace LocationService.Infrastructure.Common
             })));
         }
 
+        public static bool IsValidCep(this string cep)
+        {
+            if (cep.Length != 8 && cep.Length != 9 && cep.Length != 10)
+                return false;
 
+            var match = Regex.Match(cep, REGEX_VALIDATE_CEP);
+            return match.Success;
+        }
     }
 }
