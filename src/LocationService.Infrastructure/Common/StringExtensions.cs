@@ -10,6 +10,8 @@ namespace LocationService.Infrastructure.Common
     public static class StringExtensions
     {
 
+        internal const string REGEX_VALIDATE_CEP = @"^\d{2}\.?\d{3}\-?\d{3}$";
+
         public static string[] SplitString(this string value, string separating)
         {
             string[] array = { separating };
@@ -71,7 +73,6 @@ namespace LocationService.Infrastructure.Common
                 return true;
             })));
         }
-
         public static string FixCep(this string cep)
         {
             if (cep != null)
@@ -82,6 +83,12 @@ namespace LocationService.Infrastructure.Common
             }
             return cep;
         }
-
+        public static bool IsValidCep(this string cep)
+        {
+            if (cep.Length != 8 && cep.Length != 9 && cep.Length != 10)
+                return false;
+            var match = Regex.Match(cep, REGEX_VALIDATE_CEP);
+            return match.Success;
+        }
     }
 }
