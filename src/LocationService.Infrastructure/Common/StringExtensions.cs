@@ -90,5 +90,11 @@ namespace LocationService.Infrastructure.Common
             var match = Regex.Match(cep, REGEX_VALIDATE_CEP);
             return match.Success;
         }
+
+         public static string RemoveWhiteSpaces(this string current)
+        {
+            return string.Join(" ", current.Split(new char[] { ' ' },
+                   StringSplitOptions.RemoveEmptyEntries));
+        }
     }
 }
