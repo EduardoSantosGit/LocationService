@@ -53,21 +53,29 @@ namespace LocationService.Infrastructure.Services.Adresses
         public async Task<List<Adress>> GetAdressesTerm(string term)
         {
             var serAvailable = _addressProvider.Count();
+            var result = new List<Adress>();
 
             if (serAvailable > 0)
             {
                 var providerOne = _addressProvider.First();
-                var result = await providerOne.GetAdressesZipCode(term);
-                var ieAdress = default(IEnumerable<List<Adress>>);
+                result = await providerOne.GetAdressesTerm(term);
 
-                if (result == null)
+                if (result.Count == 0)
                 {
+                    var otherProvider = _addressProvider.Skip(1);
 
+                    foreach (var item in otherProvider)
+                    {
+                        result = await item.GetAdressesTerm(term);
+
+                        if (result.Count > 0)
+                        {
+                            break;
+                        }
+                    }
                 }
-
             }
-
-            return null;
+            return result;
         }
 
     }
