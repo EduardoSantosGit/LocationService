@@ -24,27 +24,29 @@ namespace LocationService.Infrastructure.Services.Adresses
 
         public async Task<Adress> GetAdressesZipCode(string zipCode)
         {
-
             var serAvailable = _addressProvider.Count();
-            var ieAdress = default(IEnumerable<Adress>);
             var result = default(Adress);
 
             if (serAvailable > 0)
             {
                 var providerOne = _addressProvider.First();
                 result = await providerOne.GetAdressesZipCode(zipCode);
-                
+
                 if (result == null)
                 {
-                    ieAdress = _addressProvider.Skip(1).Select(x => x.GetAdressesZipCode(zipCode).Result)
-                                    .Where(y => y != null);
+                    var otherProvider = _addressProvider.Skip(1);
 
-                    if (ieAdress.Count() > 0)
-                        return ieAdress.ElementAt(0);
+                    foreach (var item in otherProvider)
+                    {
+                        result = await item.GetAdressesZipCode(zipCode);
+
+                        if (result != null)
+                        {
+                            break;
+                        }
+                    }
                 }
-
             }
-              
             return result;
         }
 
@@ -60,7 +62,7 @@ namespace LocationService.Infrastructure.Services.Adresses
 
                 if (result == null)
                 {
-                   
+
                 }
 
             }
