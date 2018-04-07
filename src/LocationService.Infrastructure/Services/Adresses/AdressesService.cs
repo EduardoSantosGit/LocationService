@@ -14,18 +14,21 @@ namespace LocationService.Infrastructure.Services.Adresses
     public class AdressesService : IAdressesServices
     {
         private readonly IEnumerable<IAddressProvider> _addressProvider;
-        private readonly ICacheManager<Adress> _cacheManager;
+        private readonly ICacheManager<Adress> _cache;
 
-        public AdressesService(IEnumerable<IAddressProvider> addressProvider, ICacheManager<Adress> _cache)
+        public AdressesService(IEnumerable<IAddressProvider> addressProvider, ICacheManager<Adress> cache)
         {
             _addressProvider = addressProvider;
-            _cacheManager = _cache;
+            _cache = cache;
         }
 
         public async Task<Adress> GetAdressesZipCode(string zipCode)
         {
             var serAvailable = _addressProvider.Count();
             var result = default(Adress);
+
+            if (_cache.Get(zipCode) != null)
+                return result;
 
             if (serAvailable > 0)
             {
@@ -47,6 +50,7 @@ namespace LocationService.Infrastructure.Services.Adresses
                     }
                 }
             }
+            _cache.Add(zipCode, result);
             return result;
         }
 
