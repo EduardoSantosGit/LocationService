@@ -31,8 +31,9 @@ namespace LocationService.Api.Configure
             });
 
             var cache = CacheFactory.FromConfiguration<Adress>("AdressCache", cfg);
+            var cachelst = CacheFactory.FromConfiguration<List<Adress>>("AdressCacheLst", cfg);
 
-            container.RegisterInstance(new AdressesService(new IAddressProvider[] { new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.FromSeconds(30)) }, cache));
+            container.RegisterInstance(new AdressesService(new IAddressProvider[] { new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.FromSeconds(30)) }, cache, cachelst));
 
             container.RegisterInstance(new SearchAdressService(container.GetInstance<AdressesService>()));
 
