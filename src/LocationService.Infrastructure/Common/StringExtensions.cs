@@ -96,5 +96,17 @@ namespace LocationService.Infrastructure.Common
             return string.Join(" ", current.Split(new char[] { ' ' },
                    StringSplitOptions.RemoveEmptyEntries));
         }
+
+         public static string Truncate(this string text, int maxCharacters)
+        {
+            return text.Truncate(maxCharacters, "..");
+        }
+
+        public static string Truncate(this string text, int maxCharacters, string trailingText)
+        {
+            if (string.IsNullOrEmpty(text) || maxCharacters <= 0 || text.Length <= maxCharacters)
+                return text;
+            return text.Substring(0, maxCharacters) + trailingText;
+        }
     }
 }
