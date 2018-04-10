@@ -108,5 +108,10 @@ namespace LocationService.Infrastructure.Common
                 return text;
             return text.Substring(0, maxCharacters) + trailingText;
         }
+
+        public static T ConvertJsonStringToObject<T>(this string stringToDeserialize)
+        {
+            return JsonConvert.DeserializeObject<T>(stringToDeserialize);
+        }
     }
 }
