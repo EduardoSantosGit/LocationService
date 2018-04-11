@@ -113,5 +113,19 @@ namespace LocationService.Infrastructure.Common
         {
             return JsonConvert.DeserializeObject<T>(stringToDeserialize);
         }
+
+        public static long ParseLong(this string current, long defaultValueOnNullOrEmpty = 0, string fieldName = null)
+        {
+            var res = long.TryParse(current, out long result);
+
+            var isEmpty = string.IsNullOrWhiteSpace(current) && current != null;
+            if (isEmpty)
+                return defaultValueOnNullOrEmpty;
+
+            if (!res || isEmpty)
+                throw new FormatException($"can not parse {fieldName + " " ?? ""}to long with value {current}");
+
+            return result;
+        }
     }
 }
