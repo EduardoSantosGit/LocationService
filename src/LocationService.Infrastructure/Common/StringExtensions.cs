@@ -127,5 +127,19 @@ namespace LocationService.Infrastructure.Common
 
             return result;
         }
+
+        public static int ParseInt(this string current, int defaultValueOnNullOrEmpty = 0, string fieldName = null)
+        {
+            var res = int.TryParse(current, out int result);
+
+            var isEmpty = string.IsNullOrWhiteSpace(current) && current != null;
+            if (isEmpty)
+                return defaultValueOnNullOrEmpty;
+
+            if (!res || isEmpty)
+                throw new FormatException($"can not parse {fieldName + " " ?? ""}to int with value {current}");
+
+            return result;
+        }
     }
 }
