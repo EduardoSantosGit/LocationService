@@ -141,5 +141,36 @@ namespace LocationService.Infrastructure.Common
 
             return result;
         }
+
+        public static int? ParseIntNullable(this string current, int? defaultValueOnNullOrEmpty = null, string fieldName = null)
+        {
+            var result = current.ParseInt(fieldName: fieldName);
+            if (result == 0)
+                return defaultValueOnNullOrEmpty;
+
+            return result;
+        }
+
+        public static decimal? ParseDecimal(this string current,
+                    decimal? defaultValueOnNullOrEmpty = null,
+                    IFormatProvider provider = null,
+                    NumberStyles style = NumberStyles.Currency,
+                    string fieldName = null)
+        {
+            if (provider == null)
+                provider = _ptBR.NumberFormat;
+
+            var res = decimal.TryParse(current, style, provider, out decimal result);
+
+            var isEmpty = string.IsNullOrWhiteSpace(current) && current != null;
+            if (isEmpty)
+                return defaultValueOnNullOrEmpty;
+
+            if (!res || isEmpty)
+                throw new FormatException($"can not parse {fieldName + " " ?? ""}to decimal with value {current}");
+
+            return result;
+        }
+
     }
 }
