@@ -4,6 +4,7 @@ using System.Text;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace LocationService.Infrastructure.Common
 {
@@ -11,6 +12,8 @@ namespace LocationService.Infrastructure.Common
     {
 
         internal const string REGEX_VALIDATE_CEP = @"^\d{2}\.?\d{3}\-?\d{3}$";
+        private static readonly CultureInfo _ptBR = new CultureInfo("pt-BR");
+        private static TimeZoneInfo _timeZoneUTC = TimeZoneInfo.FindSystemTimeZoneById("UTC");
 
         public static string[] SplitString(this string value, string separating)
         {
@@ -185,6 +188,20 @@ namespace LocationService.Infrastructure.Common
 
             }
             return parsedDate;
+        }
+
+        public static DateTimeOffset TryParseDateTimeOffsetUTC(
+        this string current,
+        string format = "dd/MM/yyyy",
+        DateTimeOffset defaultValueOnNullEmptyOrInvalid = default(DateTimeOffset),
+        TimeZoneInfo timeZoneInfo = null)
+        {
+            if (!DateTimeOffset.TryParseExact(current, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTimeOffset parsedDateLocal))
+                return defaultValueOnNullEmptyOrInvalid;
+
+            var tzOffset = (timeZoneInfo ?? _timeZoneUTC).GetUtcOffset(parsedDateLocal.DateTime);
+            DateTimeOffset parsedDateTimeZone = new DateTimeOffset(parsedDateLocal.DateTime, tzOffset).UtcDateTime;
+            return parsedDateTimeZone;
         }
 
     }
