@@ -172,5 +172,20 @@ namespace LocationService.Infrastructure.Common
             return result;
         }
 
+         public static DateTimeOffset? TryParseDateTimeOffsetNullableUTC(
+            this string current,
+            string format = "dd/MM/yyyy",
+            DateTimeOffset? defaultValueOnNullEmptyOrInvalid = null,
+            TimeZoneInfo timeZoneInfo = null)
+        {
+            var parsedDate = current.TryParseDateTimeOffsetUTC(format: format, defaultValueOnNullEmptyOrInvalid: default(DateTimeOffset), timeZoneInfo: timeZoneInfo);
+            if (parsedDate == default(DateTimeOffset))
+            {
+                return defaultValueOnNullEmptyOrInvalid;
+
+            }
+            return parsedDate;
+        }
+
     }
 }
