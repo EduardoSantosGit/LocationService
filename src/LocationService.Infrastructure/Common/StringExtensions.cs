@@ -204,5 +204,23 @@ namespace LocationService.Infrastructure.Common
             return parsedDateTimeZone;
         }
 
+        public static bool EnumTryParseFromDescription<T>(string description, out T value)
+        {
+            MemberInfo[] fis = typeof(T).GetFields();
+            value = default(T);
+
+            foreach (var fi in fis)
+            {
+                var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
+                if (attributes != null && attributes.Length > 0 && attributes[0].Description == description)
+                {
+                    value = (T)Enum.Parse(typeof(T), fi.Name);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
     }
 }
