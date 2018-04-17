@@ -222,5 +222,22 @@ namespace LocationService.Infrastructure.Common
             return false;
         }
 
+        private static string DomainMapper(Match match)
+        {
+            // IdnMapping class with default property values.
+            var idn = new IdnMapping();
+
+            string domainName = match.Groups[2].Value;
+            try
+            {
+                domainName = idn.GetAscii(domainName);
+            }
+            catch (ArgumentException)
+            {
+                //invalid = true;
+            }
+            return match.Groups[1].Value + domainName;
+        }
+
     }
 }
