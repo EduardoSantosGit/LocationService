@@ -105,6 +105,19 @@ namespace LocationService.Infrastructure.Common
                            || uriResult.Scheme == Uri.UriSchemeFtp);
         }                   
 
+        public static void ParseLogradouro(this Address item)
+        {
+            var tipo = StreetSuffix.Outros;
+
+            var logradouro = item.Street;
+            var tipoLogradouro = logradouro.Substring(0, logradouro.IndexOf(" ")).Trim();
+
+            if (EnumTryParseFromDescription<StreetSuffix>(tipoLogradouro, out tipo) == false)
+                tipo = StreetSuffix.Outros;
+
+            item.Street = item.Street.Remove(0, tipoLogradouro.Length + 1).Trim();
+            item.StreetSuffix = tipo.ToDescription();
+        }
          public static string RemoveWhiteSpaces(this string current)
         {
             return string.Join(" ", current.Split(new char[] { ' ' },
