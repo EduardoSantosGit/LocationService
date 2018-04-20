@@ -96,6 +96,15 @@ namespace LocationService.Infrastructure.Common
             return match.Success;
         }
 
+        public static bool IsValidUrl(this string source)
+        {
+            Uri uriResult;
+            return Uri.TryCreate(source, UriKind.Absolute, out uriResult)
+                        && (uriResult.Scheme == Uri.UriSchemeHttp
+                           || uriResult.Scheme == Uri.UriSchemeHttps
+                           || uriResult.Scheme == Uri.UriSchemeFtp);
+        }                   
+
          public static string RemoveWhiteSpaces(this string current)
         {
             return string.Join(" ", current.Split(new char[] { ' ' },
