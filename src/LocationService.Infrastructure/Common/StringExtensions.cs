@@ -104,20 +104,7 @@ namespace LocationService.Infrastructure.Common
                            || uriResult.Scheme == Uri.UriSchemeHttps
                            || uriResult.Scheme == Uri.UriSchemeFtp);
         }                   
-
-        public static void ParseLogradouro(this Address item)
-        {
-            var tipo = StreetSuffix.Outros;
-
-            var logradouro = item.Street;
-            var tipoLogradouro = logradouro.Substring(0, logradouro.IndexOf(" ")).Trim();
-
-            if (EnumTryParseFromDescription<StreetSuffix>(tipoLogradouro, out tipo) == false)
-                tipo = StreetSuffix.Outros;
-
-            item.Street = item.Street.Remove(0, tipoLogradouro.Length + 1).Trim();
-            item.StreetSuffix = tipo.ToDescription();
-        }
+        
          public static string RemoveWhiteSpaces(this string current)
         {
             return string.Join(" ", current.Split(new char[] { ' ' },
@@ -245,36 +232,5 @@ namespace LocationService.Infrastructure.Common
 
             return false;
         }
-
-        public static string NewId()
-        {
-            var generator = new Base36IdGenerator(
-                                    numTimestampCharacters: 3,
-                                    numServerCharacters: 2,
-                                    numRandomCharacters: 3,
-                                    reservedValue: "",
-                                    delimiter: "-",
-                                    delimiterPositions: new[] { 20, 15, 10, 5 });
-
-            return generator.NewId().ToLowerInvariant(); // Returns a 8 digit value for the new Id already convert to string.
-        }
-
-        private static string DomainMapper(Match match)
-        {
-            // IdnMapping class with default property values.
-            var idn = new IdnMapping();
-
-            string domainName = match.Groups[2].Value;
-            try
-            {
-                domainName = idn.GetAscii(domainName);
-            }
-            catch (ArgumentException)
-            {
-                //invalid = true;
-            }
-            return match.Groups[1].Value + domainName;
-        }
-
     }
 }
