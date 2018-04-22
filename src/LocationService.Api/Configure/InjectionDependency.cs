@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace LocationService.Api.Configure
 {
@@ -26,7 +27,7 @@ namespace LocationService.Api.Configure
             var cfg = ConfigurationBuilder.BuildConfiguration(settings =>
             {
                 settings.WithUpdateMode(CacheUpdateMode.Up)
-                        .WithHandle(typeof(Object))
+                        .WithHandle(typeof(MemoryCache))
                         .WithExpiration(ExpirationMode.Sliding, TimeSpan.FromSeconds(10));
             });
 
@@ -49,4 +50,5 @@ namespace LocationService.Api.Configure
             throw new NotImplementedException();
         }
     }
+    
 }
