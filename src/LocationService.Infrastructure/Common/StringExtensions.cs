@@ -246,6 +246,19 @@ namespace LocationService.Infrastructure.Common
             return false;
         }
 
+        public static string NewId()
+        {
+            var generator = new Base36IdGenerator(
+                                    numTimestampCharacters: 3,
+                                    numServerCharacters: 2,
+                                    numRandomCharacters: 3,
+                                    reservedValue: "",
+                                    delimiter: "-",
+                                    delimiterPositions: new[] { 20, 15, 10, 5 });
+
+            return generator.NewId().ToLowerInvariant(); // Returns a 8 digit value for the new Id already convert to string.
+        }
+
         private static string DomainMapper(Match match)
         {
             // IdnMapping class with default property values.
