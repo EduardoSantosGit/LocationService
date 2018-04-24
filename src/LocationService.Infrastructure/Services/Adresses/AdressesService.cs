@@ -14,58 +14,78 @@ namespace LocationService.Infrastructure.Services.Adresses
     public class AdressesService : IAdressesServices
     {
         private readonly IEnumerable<IAddressProvider> _addressProvider;
-        private readonly ICacheManager<Adress> _cacheManager;
+        private readonly ICacheManager<Adress> _cache;
+        private readonly ICacheManager<List<Adress>> _cacheLst;
 
-        public AdressesService(IEnumerable<IAddressProvider> addressProvider, ICacheManager<Adress> _cache)
+        public AdressesService(IEnumerable<IAddressProvider> addressProvider, ICacheManager<Adress> cache, ICacheManager<List<Adress>> cacheLst)
         {
             _addressProvider = addressProvider;
-            _cacheManager = _cache;
+            _cache = cache;
+            _cacheLst = cacheLst;
         }
 
         public async Task<Adress> GetAdressesZipCode(string zipCode)
         {
-
             var serAvailable = _addressProvider.Count();
-            var ieAdress = default(IEnumerable<Adress>);
             var result = default(Adress);
+
+            if (_cache.Get(zipCode) != null)
+                return result;
 
             if (serAvailable > 0)
             {
                 var providerOne = _addressProvider.First();
                 result = await providerOne.GetAdressesZipCode(zipCode);
-                
+
                 if (result == null)
                 {
-                    ieAdress = _addressProvider.Skip(1).Select(x => x.GetAdressesZipCode(zipCode).Result)
-                                    .Where(y => y != null);
+                    var otherProvider = _addressProvider.Skip(1);
 
-                    if (ieAdress.Count() > 0)
-                        return ieAdress.ElementAt(0);
+                    foreach (var item in otherProvider)
+                    {
+                        result = await item.GetAdressesZipCode(zipCode);
+
+                        if (result != null)
+                        {
+                            break;
+                        }
+                    }
                 }
-
             }
-              
+            _cache.Add(zipCode, result);
             return result;
         }
 
         public async Task<List<Adress>> GetAdressesTerm(string term)
         {
             var serAvailable = _addressProvider.Count();
+            var result = new List<Adress>();
+
+            if (_cacheLst.Get(term) != null)
+                return result;
 
             if (serAvailable > 0)
             {
                 var providerOne = _addressProvider.First();
-                var result = await providerOne.GetAdressesZipCode(term);
-                var ieAdress = default(IEnumerable<List<Adress>>);
+                result = await providerOne.GetAdressesTerm(term);
 
-                if (result == null)
+                if (result.Count == 0)
                 {
-                   
+                    var otherProvider = _addressProvider.Skip(1);
+
+                    foreach (var item in otherProvider)
+                    {
+                        result = await item.GetAdressesTerm(term);
+
+                        if (result.Count > 0)
+                        {
+                            break;
+                        }
+                    }
                 }
-
             }
-
-            return null;
+            _cacheLst.Add(term, result);
+            return result;
         }
 
     }
