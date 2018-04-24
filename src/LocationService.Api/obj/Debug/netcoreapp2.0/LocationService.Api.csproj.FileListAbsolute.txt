@@ -13,3 +13,4 @@ C:\works\study\LocationService\src\LocationService.Api\bin\Debug\netcoreapp2.0\L
 C:\works\study\LocationService\src\LocationService.Api\bin\Debug\netcoreapp2.0\LocationService.Infrastructure.pdb
 C:\works\study\LocationService\src\LocationService.Api\obj\Debug\netcoreapp2.0\LocationService.Api.dll
 C:\works\study\LocationService\src\LocationService.Api\obj\Debug\netcoreapp2.0\LocationService.Api.pdb
+C:\works\study\LocationService\src\LocationService.Api\obj\Debug\netcoreapp2.0\LocationService.Api.csproj.CopyComplete
