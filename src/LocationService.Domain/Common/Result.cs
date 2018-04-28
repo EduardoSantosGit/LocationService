@@ -8,12 +8,8 @@ namespace LocationService.Domain.Common
 
     public enum ResultStatusCode
     {
-        UnprocessableEntity = -12,
-        NotImplemented = -11,
-        InvalidPage = -10,
-        InvalidSession = -9,
-        ProxyBlocked = -8,
-        BadCaptcha = -7,
+        NotImplemented = -8,
+        InvalidPage = -7,
         Unavailable = -6,
         TimedOut = -5,
         BadRequest = -4,

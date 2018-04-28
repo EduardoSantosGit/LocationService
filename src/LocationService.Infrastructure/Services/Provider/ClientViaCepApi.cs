@@ -21,7 +21,7 @@ namespace LocationService.Infrastructure.Services.Provider
 
         public async Task<string> GetAsyncZipCode(string zipCode)
         {
-            var result = await this.GetAsync(_baseUrl + _apiUrl + zipCode + "/json");
+            var result = await this.GetAsync($@"{_baseUrl}{_apiUrl}{zipCode}/json");
 
             return null;
         }
