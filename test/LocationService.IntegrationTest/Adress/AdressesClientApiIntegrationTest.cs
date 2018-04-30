@@ -92,6 +92,5 @@ namespace LocationService.IntegrationTest.Adress
             Assert.True(type);
             Assert.True(pageData);
         }
-
     }
 }
