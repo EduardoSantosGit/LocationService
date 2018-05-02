@@ -24,17 +24,17 @@ namespace LocationService.Api.Configure
             var containerOptions = new ContainerOptions { EnablePropertyInjection = false };
             var container = new ServiceContainer(containerOptions);
 
-            var cfg = ConfigurationBuilder.BuildConfiguration(settings =>
-            {
-                settings.WithUpdateMode(CacheUpdateMode.Up)
-                        .WithHandle(typeof(MemoryCache))
-                        .WithExpiration(ExpirationMode.Sliding, TimeSpan.FromSeconds(10));
-            });
+            //var cfg = ConfigurationBuilder.BuildConfiguration(settings =>
+            //{
+            //    settings.WithUpdateMode(CacheUpdateMode.Up)
+            //            .WithHandle(typeof(MemoryCache))
+            //            .WithExpiration(ExpirationMode.Sliding, TimeSpan.FromSeconds(10));
+            //});
 
-            var cache = CacheFactory.FromConfiguration<Adress>("AdressCache", cfg);
-            var cachelst = CacheFactory.FromConfiguration<List<Adress>>("AdressCacheLst", cfg);
+           // var cache = CacheFactory.FromConfiguration<Adress>("AdressCache", cfg);
+           // var cachelst = CacheFactory.FromConfiguration<List<Adress>>("AdressCacheLst", cfg);
 
-            container.RegisterInstance(new AdressesService(new IAddressProvider[] { new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.FromSeconds(30)) }, cache, cachelst));
+            container.RegisterInstance(new AdressesService(new IAddressProvider[] { new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.FromSeconds(30)) }));
 
             container.RegisterInstance(new SearchAdressService(container.GetInstance<AdressesService>()));
 
