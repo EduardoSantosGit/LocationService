@@ -21,7 +21,7 @@ namespace LocationService.Domain.Services.Adresses
             return await _adressesServices.GetAdressesZipCode(zipCode);
         }
 
-        public async Task<List<Adress>> FindByTerm(string term)
+        public async Task<IEnumerable<Adress>> FindByTerm(string term)
         {
             return await _adressesServices.GetAdressesTerm(term);
         }
