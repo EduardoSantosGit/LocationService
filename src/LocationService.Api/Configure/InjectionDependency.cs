@@ -44,11 +44,6 @@ namespace LocationService.Api.Configure
 
             return container;
         }
-
-        private static IAddressProvider ClientMailApi()
-        {
-            throw new NotImplementedException();
-        }
     }
     
 }
