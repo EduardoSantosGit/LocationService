@@ -232,5 +232,14 @@ namespace LocationService.Infrastructure.Common
 
             return false;
         }
+
+         public static T DeserializeXmlStringToClass<T>(string input) where T : class
+        {
+            var ser = XmlSerializer.FromTypes(new[] { typeof(T) })[0];
+
+            using (var sr = new StringReader(input))
+                return (T)ser.Deserialize(sr);
+        }
+
     }
 }
