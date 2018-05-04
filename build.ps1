@@ -74,4 +74,4 @@ if (!(Test-Path $NugetPath)) {
 ###########################################################################
 
 & dotnet "$CakePath" $args
-exit $LASTEXITCODE
+#exit $LASTEXITCODE
