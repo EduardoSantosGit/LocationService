@@ -11,7 +11,7 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "NETStandard.Library/2.0.1": {
+      "NETStandard.Library/2.0.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0"
@@ -30,7 +30,7 @@
   },
   "libraries": {
     "Microsoft.NETCore.Platforms/1.1.0": {
-      "sha512": "oLRKis0ihNN3o/FXfrYqsEZZOyzCjQbEJxJ0ANbilSCUk+jf4VK7ZikA0KIq55uj2S7WSem4x/4hcI4nSW93Nw==",
+      "sha512": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
       "type": "package",
       "path": "microsoft.netcore.platforms/1.1.0",
       "files": [
@@ -42,10 +42,10 @@
         "runtime.json"
       ]
     },
-    "NETStandard.Library/2.0.1": {
-      "sha512": "oA6nwv9MhEKYvLpjZ0ggSpb1g4CQViDVQjLUcDWg598jtvJbpfeP2reqwI1GLW2TbxC/Ml7xL6BBR1HmKPXlTg==",
+    "NETStandard.Library/2.0.0": {
+      "sha512": "7jnbRU+L08FXKMxqUflxEXtVymWvNOrS8yHgu9s6EM8Anr6T/wIX4nZ08j/u3Asz+tCufp3YVwFSEvFTPYmBPA==",
       "type": "package",
-      "path": "netstandard.library/2.0.1",
+      "path": "netstandard.library/2.0.0",
       "files": [
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -166,18 +166,18 @@
         "build/netstandard2.0/ref/netstandard.dll",
         "build/netstandard2.0/ref/netstandard.xml",
         "lib/netstandard1.0/_._",
-        "netstandard.library.2.0.1.nupkg.sha512",
+        "netstandard.library.2.0.0.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "NETStandard.Library >= 2.0.1"
+      "NETStandard.Library >= 2.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\staff\\.nuget\\packages\\": {},
+    "C:\\Users\\eduar\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -186,30 +186,25 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\works\\study\\LocationService\\src\\LocationService.Domain\\LocationService.Domain.csproj",
+      "projectUniqueName": "C:\\works\\projetos\\dotnet\\LocationService\\src\\LocationService.Domain\\LocationService.Domain.csproj",
       "projectName": "LocationService.Domain",
-      "projectPath": "C:\\works\\study\\LocationService\\src\\LocationService.Domain\\LocationService.Domain.csproj",
-      "packagesPath": "C:\\Users\\staff\\.nuget\\packages\\",
-      "outputPath": "C:\\works\\study\\LocationService\\src\\LocationService.Domain\\obj\\",
+      "projectPath": "C:\\works\\projetos\\dotnet\\LocationService\\src\\LocationService.Domain\\LocationService.Domain.csproj",
+      "packagesPath": "C:\\Users\\eduar\\.nuget\\packages\\",
+      "outputPath": "C:\\works\\projetos\\dotnet\\LocationService\\src\\LocationService.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\staff\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\ServiceFabricSDK.config"
+        "C:\\Users\\eduar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\Microsoft SDKs\\Service Fabric\\packages": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://nfe-pkg.pkgs.visualstudio.com/_packaging/all/nuget/v2/": {},
-        "https://nfe-pkg.pkgs.visualstudio.com/_packaging/all/nuget/v3/": {},
-        "https://nfe-pkg.pkgs.visualstudio.com/_packaging/all/nuget/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netstandard2.0": {
@@ -228,7 +223,7 @@
           "NETStandard.Library": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[2.0.1, )",
+            "version": "2.0.0",
             "autoReferenced": true
           }
         },

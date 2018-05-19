@@ -30,7 +30,7 @@ namespace LocationService.Infrastructure.Services.Adresses
             var result = default(Adress);
 
             if (_cache.Get(zipCode) != null)
-                return result;
+                return _cache.Get(zipCode);
 
             if (serAvailable > 0)
             {
@@ -62,7 +62,7 @@ namespace LocationService.Infrastructure.Services.Adresses
             var result = new List<Adress>();
 
             if (_cacheLst.Get(term) != null)
-                return result;
+                return _cacheLst.Get(term);
 
             if (serAvailable > 0)
             {
