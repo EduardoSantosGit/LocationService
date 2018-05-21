@@ -7,6 +7,8 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using System.ComponentModel;
 using System.Reflection;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace LocationService.Infrastructure.Common
 {
