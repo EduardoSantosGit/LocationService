@@ -14,7 +14,6 @@ C:\works\study\LocationService\src\LocationService.Api\bin\Debug\netcoreapp2.0\L
 C:\works\study\LocationService\src\LocationService.Api\obj\Debug\netcoreapp2.0\LocationService.Api.dll
 C:\works\study\LocationService\src\LocationService.Api\obj\Debug\netcoreapp2.0\LocationService.Api.pdb
 C:\works\study\LocationService\src\LocationService.Api\obj\Debug\netcoreapp2.0\LocationService.Api.csproj.CopyComplete
-C:\works\projetos\dotnet\LocationService\src\LocationService.Api\obj\Debug\netcoreapp2.0\LocationService.Api.csprojResolveAssemblyReference.cache
 C:\works\projetos\dotnet\LocationService\src\LocationService.Api\obj\Debug\netcoreapp2.0\LocationService.Api.csproj.CoreCompileInputs.cache
 C:\works\projetos\dotnet\LocationService\src\LocationService.Api\obj\Debug\netcoreapp2.0\LocationService.Api.AssemblyInfoInputs.cache
 C:\works\projetos\dotnet\LocationService\src\LocationService.Api\obj\Debug\netcoreapp2.0\LocationService.Api.AssemblyInfo.cs
@@ -29,3 +28,5 @@ C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Debug\netco
 C:\works\projetos\dotnet\LocationService\src\LocationService.Api\bin\Debug\netcoreapp2.0\LocationService.Infrastructure.pdb
 C:\works\projetos\dotnet\LocationService\src\LocationService.Api\obj\Debug\netcoreapp2.0\LocationService.Api.dll
 C:\works\projetos\dotnet\LocationService\src\LocationService.Api\obj\Debug\netcoreapp2.0\LocationService.Api.pdb
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\obj\Debug\netcoreapp2.0\LocationService.Api.csprojAssemblyReference.cache
+C:\works\projetos\dotnet\LocationService\src\LocationService.Api\obj\Debug\netcoreapp2.0\LocationService.Api.csproj.CopyComplete

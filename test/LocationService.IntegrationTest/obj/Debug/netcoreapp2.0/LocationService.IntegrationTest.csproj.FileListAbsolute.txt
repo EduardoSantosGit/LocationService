@@ -14,7 +14,6 @@ C:\works\projetos\dotnet\LocationService\LocationService.IntegrationTest\bin\Deb
 C:\works\projetos\dotnet\LocationService\LocationService.IntegrationTest\bin\Debug\netcoreapp2.0\LocationService.Infrastructure.pdb
 C:\works\projetos\dotnet\LocationService\LocationService.IntegrationTest\obj\Debug\netcoreapp2.0\LocationService.IntegrationTest.dll
 C:\works\projetos\dotnet\LocationService\LocationService.IntegrationTest\obj\Debug\netcoreapp2.0\LocationService.IntegrationTest.pdb
-C:\works\projetos\dotnet\LocationService\test\LocationService.IntegrationTest\obj\Debug\netcoreapp2.0\LocationService.IntegrationTest.csprojResolveAssemblyReference.cache
 C:\works\projetos\dotnet\LocationService\test\LocationService.IntegrationTest\obj\Debug\netcoreapp2.0\LocationService.IntegrationTest.csproj.CoreCompileInputs.cache
 C:\works\projetos\dotnet\LocationService\test\LocationService.IntegrationTest\obj\Debug\netcoreapp2.0\LocationService.IntegrationTest.AssemblyInfoInputs.cache
 C:\works\projetos\dotnet\LocationService\test\LocationService.IntegrationTest\obj\Debug\netcoreapp2.0\LocationService.IntegrationTest.AssemblyInfo.cs
@@ -50,3 +49,5 @@ C:\works\study\LocationService\test\LocationService.IntegrationTest\obj\Debug\ne
 C:\works\study\LocationService\test\LocationService.IntegrationTest\obj\Debug\netcoreapp2.0\LocationService.IntegrationTest.AssemblyInfo.cs
 C:\works\study\LocationService\test\LocationService.IntegrationTest\obj\Debug\netcoreapp2.0\LocationService.IntegrationTest.dll
 C:\works\study\LocationService\test\LocationService.IntegrationTest\obj\Debug\netcoreapp2.0\LocationService.IntegrationTest.pdb
+C:\works\projetos\dotnet\LocationService\test\LocationService.IntegrationTest\obj\Debug\netcoreapp2.0\LocationService.IntegrationTest.csprojAssemblyReference.cache
+C:\works\projetos\dotnet\LocationService\test\LocationService.IntegrationTest\obj\Debug\netcoreapp2.0\LocationService.IntegrationTest.csproj.CopyComplete
