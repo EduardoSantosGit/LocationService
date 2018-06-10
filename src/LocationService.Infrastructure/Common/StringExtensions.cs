@@ -80,16 +80,7 @@ namespace LocationService.Infrastructure.Common
                 return true;
             })));
         }
-        public static string FixCep(this string cep)
-        {
-            if (cep != null)
-            {
-                cep = cep.Trim();
-                if (cep.IndexOf("-") < 0 && cep.Length == 8)
-                    cep = cep.Insert(5, "-");
-            }
-            return cep;
-        }
+        
         public static bool IsValidCep(this string cep)
         {
             if (cep.Length != 8 && cep.Length != 9 && cep.Length != 10)

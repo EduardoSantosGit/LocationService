@@ -30,19 +30,15 @@ namespace LocationService.Infrastructure.Common
                 BaseUrl + url)
             { Content = new FormUrlEncodedContent(nvc) };
 
-            var response = await Client.SendAsync(request);
-
-            return response;
+            return await Client.SendAsync(request);
         }
 
         public async Task<HttpResponseMessage> GetAsync(string url)
-        {
-            return await Client.GetAsync(url);
-        }
+            => await Client.GetAsync(url);
+        
 
-        public async Task<HttpResponseMessage> PostAsync(string url, HttpContent httpContent)
-        {
-            return await Client.PostAsync(url, httpContent);
-        }
+        public async Task<HttpResponseMessage> PostAsync(string url, HttpContent httpContent) 
+            => await Client.PostAsync(url, httpContent);
+        
     }
 }

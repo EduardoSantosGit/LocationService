@@ -17,13 +17,11 @@ namespace LocationService.Domain.Services.Adresses
         }
 
         public async Task<Adress> FindByZipCode(string zipCode)
-        {
-            return await _adressesServices.GetAdressesZipCode(zipCode);
-        }
+            => await _adressesServices.GetAdressesZipCode(zipCode);
+        
 
         public async Task<IEnumerable<Adress>> FindByTerm(string term)
-        {
-            return await _adressesServices.GetAdressesTerm(term);
-        }
+            => await _adressesServices.GetAdressesTerm(term);
+        
     }
 }
