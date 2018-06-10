@@ -1,10 +1,10 @@
 version: '3'
 
 services:
-  api:
-    image: api
+  api2:
+    image: api2
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8081:8081"
+      - "8081:8081"  
