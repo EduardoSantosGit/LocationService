@@ -1,9 +1,5 @@
-FROM microsoft/dotnet:2.0-runtime AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 9000
+FROM microsoft/aspnetcore-build:2.0 AS build
 
-FROM microsoft/dotnet:2.0-sdk AS build
 WORKDIR /src
 COPY *.sln ./
 COPY src/LocationService.Api/LocationService.Api.csproj src/LocationService.Api/
@@ -11,14 +7,12 @@ COPY src/LocationService.Domain/LocationService.Domain.csproj src/LocationServic
 COPY src/LocationService.Infrastructure/LocationService.Infrastructure.csproj src/LocationService.Infrastructure/
 
 RUN dotnet restore
-COPY . .
+COPY . ./
 WORKDIR /src/src/LocationService.Api
-#RUN dotnet build -c Release -o /app
+RUN dotnet publish -c Release -o out
 
-FROM build AS publish
-#RUN dotnet publish -c Release -o /app
-
-#FROM base AS final
-#WORKDIR /app
-#COPY --from=publish /app .
-#ENTRYPOINT ["dotnet", "LocationService.dll"]
+# Build da imagem
+FROM microsoft/aspnetcore:2.0
+WORKDIR /app
+COPY --from=build /app/out .
+ENTRYPOINT ["dotnet", "LocationService.Api.dll"]
