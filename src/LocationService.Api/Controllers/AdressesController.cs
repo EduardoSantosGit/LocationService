@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace LocationService.Api.Controllers
 {
     [Route("api/v1/adress/")]
+    [Produces("application/json")]
     public class AdressesController : Controller
     {
         public SearchAdressService _searchAdressService;

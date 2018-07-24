@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace LocationService.Infrastructure.Services.Provider
 {
@@ -22,8 +23,7 @@ namespace LocationService.Infrastructure.Services.Provider
         public async Task<string> GetAsyncZipCode(string zipCode)
         {
             var result = await this.GetAsync($@"{_baseUrl}{_apiUrl}{zipCode}/json");
-
-            return null;
+            return HttpUtility.HtmlDecode(await result.Content.ReadAsStringAsync());
         }
 
     }
