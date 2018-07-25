@@ -37,5 +37,18 @@ namespace LocationService.IntegrationTest.Adress
             Assert.True(result.Contains("gia"));
         }
 
+        [Fact]
+        public async Task GetAdressesViaCep_WhenCepString_ReturnsDataJsonCorrect()
+        {
+            var adressApi = new ClientViaCepApi("https://viacep.com.br/", TimeSpan.FromSeconds(30));
+            var result = await adressApi.GetAsyncZipCode("01311200");
+
+            Assert.NotNull(result);
+            Assert.True(result.Contains("01311-200"));
+            Assert.True(result.Contains("Avenida Paulista"));
+            Assert.True(result.Contains("Bela Vista"));
+            Assert.True(result.Contains("SP"));
+            Assert.True(result.Contains("3550308"));
+        }
     }
 }
