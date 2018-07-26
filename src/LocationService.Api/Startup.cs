@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using LightInject.Microsoft.DependencyInjection;
 using LocationService.Api.Configure;
+using LocationService.Api.Middleware;
 
 namespace LocationService
 {
@@ -25,7 +26,13 @@ namespace LocationService
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddMvcCore().AddControllersAsServices().AddJsonFormatters();
+            services.AddMvcCore(options =>
+            {
+                options.InputFormatters.Insert(0, new JilInputFormatter());
+                options.OutputFormatters.Insert(0, new JilOutputFormatter());
+            })
+                .AddControllersAsServices()
+                .AddJsonFormatters();
 
             var container = InjectionDependency.ConfigureService();
             return container.CreateServiceProvider(services);
