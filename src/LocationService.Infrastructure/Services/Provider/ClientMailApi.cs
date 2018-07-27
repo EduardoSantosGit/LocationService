@@ -44,10 +44,7 @@ namespace LocationService.Infrastructure.Services.Provider
             var result = await this.PostFormUrlEncodedAsync(_apiUrl, nvc);
 
             if (result.StatusCode == HttpStatusCode.OK)
-            {
-                var e = result.Content.ReadAsStringAsync().Result;
                 return HttpUtility.HtmlDecode(result.Content.ReadAsStringAsync().Result);
-            }
 
             return null;
         }

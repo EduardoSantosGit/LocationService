@@ -23,7 +23,11 @@ namespace LocationService.Infrastructure.Services.Provider
         public async Task<string> GetAsyncZipCode(string zipCode)
         {
             var result = await this.GetAsync($@"{_baseUrl}{_apiUrl}{zipCode}/json");
-            return HttpUtility.HtmlDecode(await result.Content.ReadAsStringAsync());
+
+            if(result.StatusCode == System.Net.HttpStatusCode.OK)
+                return HttpUtility.HtmlDecode(await result.Content.ReadAsStringAsync());
+
+            return null;
         }
 
     }
