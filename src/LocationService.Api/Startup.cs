@@ -11,6 +11,7 @@ using Microsoft.Extensions.Options;
 using LightInject.Microsoft.DependencyInjection;
 using LocationService.Api.Configure;
 using LocationService.Api.Middleware;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace LocationService
 {
@@ -32,7 +33,30 @@ namespace LocationService
                 options.OutputFormatters.Insert(0, new JilOutputFormatter());
             })
                 .AddControllersAsServices()
-                .AddJsonFormatters();
+                .AddJsonFormatters()
+                .AddApiExplorer();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "ToDo API",
+                    Description = "A simple example ASP.NET Core Web API",
+                    TermsOfService = "None",
+                    Contact = new Contact
+                    {
+                        Name = "Shayne Boyer",
+                        Email = string.Empty,
+                        Url = "https://twitter.com/spboyer"
+                    },
+                    License = new License
+                    {
+                        Name = "Use under LICX",
+                        Url = "https://example.com/license"
+                    }
+                });
+            });
 
             var container = InjectionDependency.ConfigureService();
             return container.CreateServiceProvider(services);
@@ -45,6 +69,17 @@ namespace LocationService
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
+
 
             app.UseMvc();
         }
