@@ -1,9 +1,0 @@
-C:\works\study\LocationService\src\LocationService.Domain\obj\Debug\netcoreapp2.0\LocationService.Domain.csproj.CoreCompileInputs.cache
-C:\works\study\LocationService\src\LocationService.Domain\obj\Debug\netcoreapp2.0\LocationService.Domain.AssemblyInfoInputs.cache
-C:\works\study\LocationService\src\LocationService.Domain\obj\Debug\netcoreapp2.0\LocationService.Domain.AssemblyInfo.cs
-C:\works\study\LocationService\src\LocationService.Domain\bin\Debug\netcoreapp2.0\LocationService.Domain.deps.json
-C:\works\study\LocationService\src\LocationService.Domain\bin\Debug\netcoreapp2.0\LocationService.Domain.dll
-C:\works\study\LocationService\src\LocationService.Domain\bin\Debug\netcoreapp2.0\LocationService.Domain.pdb
-C:\works\study\LocationService\src\LocationService.Domain\obj\Debug\netcoreapp2.0\LocationService.Domain.dll
-C:\works\study\LocationService\src\LocationService.Domain\obj\Debug\netcoreapp2.0\LocationService.Domain.pdb
-C:\works\study\LocationService\src\LocationService.Domain\obj\Debug\netcoreapp2.0\LocationService.Domain.csprojResolveAssemblyReference.cache
