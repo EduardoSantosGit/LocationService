@@ -1,4 +1,5 @@
-﻿using LocationService.Domain.Models;
+﻿using LocationService.Domain.Common;
+using LocationService.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,8 +10,8 @@ namespace LocationService.Domain.Interfaces
     public interface IAddressProvider
     {
 
-        Task<Adress> GetAdressesZipCode(string zipCode);
-        Task<List<Adress>> GetAdressesTerm(string term);
+        Task<Result<Adress>> GetAdressesZipCode(string zipCode);
+        Task<Result<List<Adress>>> GetAdressesTerm(string term);
         
     }
 }
