@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using CacheManager.Core;
+using LocationService.Domain.Common;
 
 namespace LocationService.Infrastructure.Services.Adresses
 {
@@ -23,57 +24,43 @@ namespace LocationService.Infrastructure.Services.Adresses
         public async Task<Adress> GetAdressesZipCode(string zipCode)
         {
             var serAvailable = _addressProvider.Count();
-            var result = default(Adress);
+            var serviceUsed = _addressProvider.First();
 
-            if (serAvailable > 0)
+            var result = await serviceUsed.GetAdressesZipCode(zipCode);
+
+            if(result.Status != ResultCode.OK && serAvailable > 1)
             {
-                var providerOne = _addressProvider.First();
-                result = await providerOne.GetAdressesZipCode(zipCode);
-
-                if (result == null)
+                foreach (var item in _addressProvider.Skip(1))
                 {
-                    var otherProvider = _addressProvider.Skip(1);
+                    result = await item.GetAdressesZipCode(zipCode);
 
-                    foreach (var item in otherProvider)
-                    {
-                        result = await item.GetAdressesZipCode(zipCode);
-
-                        if (result != null)
-                        {
-                            break;
-                        }
-                    }
+                    if (result.Status == ResultCode.OK)
+                        break;
                 }
             }
-            return result;
+
+            return result.ValueType;
         }
 
         public async Task<IEnumerable<Adress>> GetAdressesTerm(string term)
         {
             var serAvailable = _addressProvider.Count();
-            var result = new List<Adress>();
+            var serviceUsed = _addressProvider.First();
 
-            if (serAvailable > 0)
+            var result = await serviceUsed.GetAdressesTerm(term);
+
+            if (result.Status != ResultCode.OK && serAvailable > 1)
             {
-                var providerOne = _addressProvider.First();
-                result = await providerOne.GetAdressesTerm(term);
-
-                if (result.Count == 0)
+                foreach (var item in _addressProvider.Skip(1))
                 {
-                    var otherProvider = _addressProvider.Skip(1);
+                    result = await item.GetAdressesTerm(term);
 
-                    foreach (var item in otherProvider)
-                    {
-                        result = await item.GetAdressesTerm(term);
-
-                        if (result.Count > 0)
-                        {
-                            break;
-                        }
-                    }
+                    if (result.Status == ResultCode.OK)
+                        break;
                 }
             }
-            return result;
+
+            return result.ValueType;
         }
 
     }
