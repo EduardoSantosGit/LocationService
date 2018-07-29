@@ -1,4 +1,5 @@
-﻿using LocationService.Domain.Interfaces;
+﻿using LocationService.Domain.Common;
+using LocationService.Domain.Interfaces;
 using LocationService.Domain.Models;
 using LocationService.Infrastructure.Common;
 using LocationService.Infrastructure.Services.Adresses;
@@ -32,7 +33,7 @@ namespace LocationService.Infrastructure.Services.Provider
             _scrapParser = new ScrapParser();
         }
 
-        public async Task<string> PostSendAsync(string term)
+        public async Task<Result<string>> PostSendAsync(string term)
         {
             var nvc = new List<KeyValuePair<string, string>>
             {
@@ -43,39 +44,43 @@ namespace LocationService.Infrastructure.Services.Provider
 
             var result = await this.PostFormUrlEncodedAsync(_apiUrl, nvc);
 
-            if (result.StatusCode == HttpStatusCode.OK)
-                return HttpUtility.HtmlDecode(result.Content.ReadAsStringAsync().Result);
-
-            return null;
+            return await ResultOperations.ReadHttpResult(result);
         }
 
-        public async Task<Adress> GetAdressesZipCode(string zipCode)
+        public async Task<Result<Adress>> GetAdressesZipCode(string zipCode)
         {
-            var html = await PostSendAsync(zipCode);
+            var result = await PostSendAsync(zipCode);
 
-            var valid = _scrapParser.ContainsValue(html, "<p>DADOS ENCONTRADOS COM SUCESSO.</p>", true);
-
-            if (valid)
+            if(result.Status == ResultCode.OK)
             {
-                return _adressesServiceScrap.GetAdressesPageCode(html);
+                var valid = _scrapParser.ContainsValue(result.ValueType, "<p>DADOS ENCONTRADOS COM SUCESSO.</p>", true);
+
+                if (valid)
+                {
+                    return new Result<Adress>(ResultCode.OK,
+                        _adressesServiceScrap.GetAdressesPageCode(result.ValueType));
+                } 
             }
 
-            return null;
+            return new Result<Adress>(result.Status, result.Value);
         }
 
-        public async Task<List<Adress>> GetAdressesTerm(string term)
+        public async Task<Result<List<Adress>>> GetAdressesTerm(string term)
         {
+            var result = await PostSendAsync(term);
 
-            var html = await PostSendAsync(term);
-
-            var valid = _scrapParser.ContainsValue(html, "<p>DADOS ENCONTRADOS COM SUCESSO.</p>", true);
-
-            if (valid)
+            if(result.Status == ResultCode.OK)
             {
-                return _adressesServiceScrap.GetAdressesPageTerm(html);
-            }
+                var valid = _scrapParser.ContainsValue(result.ValueType, "<p>DADOS ENCONTRADOS COM SUCESSO.</p>", true);
 
-            return null;
+                if (valid)
+                {
+                    return new Result<List<Adress>>(ResultCode.OK, 
+                        _adressesServiceScrap.GetAdressesPageTerm(result.ValueType));
+                }
+            }
+           
+            return new Result<List<Adress>>(result.Status, result.Value);
         }
     }
 }
