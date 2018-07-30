@@ -20,7 +20,7 @@ namespace LocationService.IntegrationTest.Adress
             var result = await adressApi.PostSendAsync("01311200");
 
             var scrap = CreateInstance();
-            var adress = scrap.GetAdressesPageCode(result);
+            var adress = scrap.GetAdressesPageCode(result.ValueType);
 
             Assert.NotNull(adress);
             Assert.Equal("Avenida Paulista - de 1047 a 1865 - lado ímpar", adress.Street);
@@ -36,7 +36,7 @@ namespace LocationService.IntegrationTest.Adress
             var result = await adressApi.PostSendAsync("Avenida Vital Brasil");
 
             var scrap = CreateInstance();
-            var adress = scrap.GetAdressesPageTerm(result);
+            var adress = scrap.GetAdressesPageTerm(result.ValueType);
 
             Assert.NotNull(adress);
             Assert.Equal(24, adress.Count);
@@ -49,7 +49,7 @@ namespace LocationService.IntegrationTest.Adress
             var result = await adressApi.PostSendAsync("01311200");
 
             var scrap = CreateInstance();
-            var adress = scrap.GetAdressesPageTerm(result);
+            var adress = scrap.GetAdressesPageTerm(result.ValueType);
 
             Assert.NotNull(adress);
             Assert.Equal(1, adress.Count);

@@ -29,8 +29,8 @@ namespace LocationService.IntegrationTest.Adress
             var adressApi = CreateInstance();
             var result = await adressApi.PostSendAsync("0000000000");
 
-            var type = result is string;
-            var pageData = result.Contains("DADOS NAO ENCONTRADOS");
+            var type = result.ValueType is string;
+            var pageData = result.ValueType.Contains("DADOS NAO ENCONTRADOS");
 
             Assert.NotNull(result);
             Assert.True(type);
@@ -43,8 +43,8 @@ namespace LocationService.IntegrationTest.Adress
             var adressApi = CreateInstance();
             var result = await adressApi.PostSendAsync("01311300a");
 
-            var type = result is string;
-            var pageData = result.Contains("DADOS NAO ENCONTRADOS");
+            var type = result.ValueType is string;
+            var pageData = result.ValueType.Contains("DADOS NAO ENCONTRADOS");
 
             Assert.NotNull(result);
             Assert.True(type);
@@ -57,8 +57,8 @@ namespace LocationService.IntegrationTest.Adress
             var adressApi = CreateInstance();
             var result = await adressApi.PostSendAsync("01311300");
 
-            var type = result is string;
-            var pageData = result.Contains("DADOS ENCONTRADOS COM SUCESSO.");
+            var type = result.ValueType is string;
+            var pageData = result.ValueType.Contains("DADOS ENCONTRADOS COM SUCESSO.");
 
             Assert.NotNull(result);
             Assert.True(type);
@@ -71,8 +71,8 @@ namespace LocationService.IntegrationTest.Adress
             var adressApi = CreateInstance();
             var result = await adressApi.PostSendAsync("01311-300");
 
-            var type = result is string;
-            var pageData = result.Contains("DADOS ENCONTRADOS COM SUCESSO.");
+            var type = result.ValueType is string;
+            var pageData = result.ValueType.Contains("DADOS ENCONTRADOS COM SUCESSO.");
 
             Assert.NotNull(result);
             Assert.True(type);
@@ -85,8 +85,8 @@ namespace LocationService.IntegrationTest.Adress
             var adressApi = CreateInstance();
             var result = await adressApi.PostSendAsync("Avenida Vital Brasil");
 
-            var type = result is string;
-            var pageData = result.Contains("DADOS ENCONTRADOS COM SUCESSO.");
+            var type = result.ValueType is string;
+            var pageData = result.ValueType.Contains("DADOS ENCONTRADOS COM SUCESSO.");
 
             Assert.NotNull(result);
             Assert.True(type);
