@@ -2,6 +2,8 @@
 using LocationService.Domain.Interfaces;
 using LocationService.Domain.Models;
 using LocationService.Infrastructure.Common;
+using LocationService.Infrastructure.Utils;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -34,11 +36,12 @@ namespace LocationService.Infrastructure.Services.Provider
 
         public async Task<Result<Adress>> GetAdressesZipCode(string zipCode)
         {
-            var result = await this.GetAdressesZipCode(zipCode);
+            var result = await this.GetSendAsync(zipCode);
 
             if(result.Status == ResultCode.OK)
             {
-
+                var routePostal = JsonConvert.DeserializeObject<AdressRoutePostal>(result.ValueType);
+                return new Result<Adress>(ResultCode.OK, Map.ConvertRouteAsAdress(routePostal));
             }
 
             return new Result<Adress>(result.Status, result.Value);

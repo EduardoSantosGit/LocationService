@@ -6,18 +6,14 @@ namespace LocationService.Domain.Models
 {
     public class AdressRoutePostal
     {
-        /*
-           {
-      "cep": "01001-000",
-      "logradouro": "Praça da Sé",
-      "complemento": "lado ímpar",
-      "bairro": "Sé",
-      "localidade": "São Paulo",
-      "uf": "SP",
-      "unidade": "",
-      "ibge": "3550308",
-      "gia": "1004"
-    }
-            */
+        public string Cep { get; set; }
+        public string Logradouro { get; set; }
+        public string Complemento { get; set; }
+        public string Bairro { get; set; }
+        public string Localidade { get; set; }
+        public string UF { get; set; }
+        public string Unidade { get; set; }
+        public string Ibge { get; set; }
+        public string Gia { get; set; }
     }
 }
