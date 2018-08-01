@@ -19,6 +19,11 @@ namespace LocationService.Domain.Services.Addresses
         public async Task<Address> FindByZipCode(string zipCode)
         {
             var result = await _addressesServices.GetAddressesZipCode(zipCode);
+
+            if(result.Status == Common.ResultCode.OK)
+            {
+            }
+
             return result.ValueType;
         }
         
