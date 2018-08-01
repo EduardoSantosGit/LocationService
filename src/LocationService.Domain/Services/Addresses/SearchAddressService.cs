@@ -22,6 +22,7 @@ namespace LocationService.Domain.Services.Addresses
 
             if(result.Status == Common.ResultCode.OK)
             {
+                
             }
 
             return result.ValueType;
