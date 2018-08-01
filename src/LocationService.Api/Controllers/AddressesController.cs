@@ -38,8 +38,18 @@ namespace LocationService.Api.Controllers
         [HttpGet("term/{term}")]
         public async Task<IActionResult> GetAddressTerm(string term)
         {
-            var values = await _searchAddressService.FindByTerm(term);
-            return new OkObjectResult(values);
+            var resultAddresses = await _searchAddressService.FindByTerm(term);
+
+            if (resultAddresses.Status == Domain.Common.ResultCode.OK)
+            {
+                var resource = Mapper.Map<IEnumerable<Address>, IEnumerable<AddressResource>>
+                    (
+                        resultAddresses.ValueType
+                    );
+                return new OkObjectResult(resource);
+            }
+
+            return new OkObjectResult(null);
         }
     }
 }
