@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LocationService.Domain.Models
 {
-    public class Adress
+    public class Address
     {
         public string ZipCode { get; set; }
         public string Street { get; set; }

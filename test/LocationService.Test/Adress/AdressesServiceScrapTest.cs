@@ -15,7 +15,7 @@ namespace LocationService.Test.Adress
         {
             var html = File.ReadAllText(@"../../../Files/HTML/AvenidaVitalBrasil.html");
 
-            var adressScrap = new AdressesServiceScrap();
+            var adressScrap = new AddressesServiceScrap();
 
             var list = adressScrap.GetAdressesPageTerm(html);
 
@@ -28,7 +28,7 @@ namespace LocationService.Test.Adress
         {
             var html = File.ReadAllText(@"../../../Files/HTML/01311200.html");
 
-            var adressScrap = new AdressesServiceScrap();
+            var adressScrap = new AddressesServiceScrap();
 
             var adress = adressScrap.GetAdressesPageCode(html);
 

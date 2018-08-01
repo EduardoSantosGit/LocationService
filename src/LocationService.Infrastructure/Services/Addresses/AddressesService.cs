@@ -10,29 +10,29 @@ using System.Linq;
 using CacheManager.Core;
 using LocationService.Domain.Common;
 
-namespace LocationService.Infrastructure.Services.Adresses
+namespace LocationService.Infrastructure.Services.Addresses
 {
-    public class AdressesService : IAdressesServices
+    public class AddressesService : IAddressesServices
     {
         private readonly IEnumerable<IAddressProvider> _addressProvider;
 
-        public AdressesService(IEnumerable<IAddressProvider> addressProvider)
+        public AddressesService(IEnumerable<IAddressProvider> addressProvider)
         {
             _addressProvider = addressProvider;
         }
 
-        public async Task<Result<Adress>> GetAdressesZipCode(string zipCode)
+        public async Task<Result<Address>> GetAddressesZipCode(string zipCode)
         {
             var serAvailable = _addressProvider.Count();
             var serviceUsed = _addressProvider.First();
 
-            var result = await serviceUsed.GetAdressesZipCode(zipCode);
+            var result = await serviceUsed.GetAddressesZipCode(zipCode);
 
             if(result.Status != ResultCode.OK && serAvailable > 1)
             {
                 foreach (var item in _addressProvider.Skip(1))
                 {
-                    result = await item.GetAdressesZipCode(zipCode);
+                    result = await item.GetAddressesZipCode(zipCode);
 
                     if (result.Status == ResultCode.OK)
                         break;
@@ -40,23 +40,23 @@ namespace LocationService.Infrastructure.Services.Adresses
             }
 
             if (result.Status == ResultCode.OK)
-                return new Result<Adress>(ResultCode.OK, result.ValueType);
+                return new Result<Address>(ResultCode.OK, result.ValueType);
 
-            return new Result<Adress>(result.Status, result.Value);
+            return new Result<Address>(result.Status, result.Value);
         }
 
-        public async Task<Result<IEnumerable<Adress>>> GetAdressesTerm(string term)
+        public async Task<Result<IEnumerable<Address>>> GetAddressesTerm(string term)
         {
             var serAvailable = _addressProvider.Count();
             var serviceUsed = _addressProvider.First();
 
-            var result = await serviceUsed.GetAdressesTerm(term);
+            var result = await serviceUsed.GetAddressesTerm(term);
 
             if (result.Status != ResultCode.OK && serAvailable > 1)
             {
                 foreach (var item in _addressProvider.Skip(1))
                 {
-                    result = await item.GetAdressesTerm(term);
+                    result = await item.GetAddressesTerm(term);
 
                     if (result.Status == ResultCode.OK)
                         break;
@@ -64,9 +64,9 @@ namespace LocationService.Infrastructure.Services.Adresses
             }
 
             if (result.Status == ResultCode.OK)
-                return new Result<IEnumerable<Adress>>(ResultCode.OK, result.ValueType);
+                return new Result<IEnumerable<Address>>(ResultCode.OK, result.ValueType);
 
-            return new Result<IEnumerable<Adress>>(result.Status, result.Value);
+            return new Result<IEnumerable<Address>>(result.Status, result.Value);
         }
 
     }

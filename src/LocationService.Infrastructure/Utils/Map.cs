@@ -8,9 +8,9 @@ namespace LocationService.Infrastructure.Utils
     public class Map
     {
 
-        public static Adress ConvertRouteAsAdress(AdressRoutePostal adressRoutePostal)
+        public static Address ConvertRouteAsAdress(AddressRoutePostal adressRoutePostal)
         {
-            var adress = new Adress
+            var adress = new Address
             {
                 ZipCode = adressRoutePostal.Cep,
                 Adjunct = adressRoutePostal.Complemento,

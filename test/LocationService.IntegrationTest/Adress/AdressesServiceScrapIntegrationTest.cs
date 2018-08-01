@@ -8,9 +8,9 @@ namespace LocationService.IntegrationTest.Adress
 {
     public class AdressesServiceScrapIntegrationTest
     {
-        public AdressesServiceScrap CreateInstance()
+        public AddressesServiceScrap CreateInstance()
         {
-            return new AdressesServiceScrap();
+            return new AddressesServiceScrap();
         }
 
         [Fact]

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LocationService.Domain.Models
 {
-    public class AdressRoutePostal
+    public class AddressRoutePostal
     {
         public string Cep { get; set; }
         public string Logradouro { get; set; }

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace LocationService.Domain.Interfaces
 {
-    public interface IAdressesServices
+    public interface IAddressesServices
     {
-        Task<Result<Adress>> GetAdressesZipCode(string zipCode);
-        Task<Result<IEnumerable<Adress>>> GetAdressesTerm(string term);
+        Task<Result<Address>> GetAddressesZipCode(string zipCode);
+        Task<Result<IEnumerable<Address>>> GetAddressesTerm(string term);
     }
 }

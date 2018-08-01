@@ -5,25 +5,25 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocationService.Infrastructure.Services.Adresses
+namespace LocationService.Infrastructure.Services.Addresses
 {
-    public class AdressesServiceScrap
+    public class AddressesServiceScrap
     {
         private readonly ScrapParser _scrapParser;
 
-        public AdressesServiceScrap()
+        public AddressesServiceScrap()
         {
             _scrapParser = new ScrapParser();
         }
 
-        public Adress GetAdressesPageCode(string html)
+        public Address GetAddressesPageCode(string html)
         {
             var table = _scrapParser.ScrapBlockPage(html, "<table class=\"tmptabela\">", "</table>");
 
             var lines = table.SplitString("<tr>");
             var columns = lines[1].SplitString("<td");
 
-            var adress = new Adress
+            var adress = new Address
             {
                 Street = _scrapParser.ScrapBlockPage(columns[1], "\">", "</td>")?.Trim(),
                 District = _scrapParser.ScrapBlockPage(columns[2], "\">", "</td>")?.Trim(),
@@ -34,13 +34,13 @@ namespace LocationService.Infrastructure.Services.Adresses
             return adress;
         }
 
-        public List<Adress> GetAdressesPageTerm(string html)
+        public List<Address> GetAddressesPageTerm(string html)
         {
             var table = _scrapParser.ScrapBlockPage(html, "<table class=\"tmptabela\">", "</table>");
             var lines = table.SplitString("<tr");
 
-            var listAdress = new List<Adress>();
-            var listAdressDouble = new List<Adress>();
+            var listAddress = new List<Address>();
+            var listAddressDouble = new List<Address>();
 
             for (var i = 2; i < lines.Length; i++)
             {
@@ -66,7 +66,7 @@ namespace LocationService.Infrastructure.Services.Adresses
                                 street = duplicate[j]?.Trim();
                             }
 
-                            listAdress.Add(new Adress
+                            listAddress.Add(new Address
                             {
                                 Street = street,
                                 District = _scrapParser.ScrapBlockPage(columns[2], "\">", "</td>")?.Trim(),
@@ -78,7 +78,7 @@ namespace LocationService.Infrastructure.Services.Adresses
                 }
                 else
                 {
-                    var adress = new Adress
+                    var adress = new Address
                     {
                         Street = _scrapParser.ScrapBlockPage(columns[1], "\">", "</td>")?.Trim(),
                         District = _scrapParser.ScrapBlockPage(columns[2], "\">", "</td>")?.Trim(),
@@ -86,12 +86,12 @@ namespace LocationService.Infrastructure.Services.Adresses
                         ZipCode = _scrapParser.ScrapBlockPage(columns[4], "\">", "</td>")?.Trim()
                     };
 
-                    listAdress.Add(adress);
+                    listAddress.Add(adress);
                 }
                 
             }
 
-            return listAdress;
+            return listAddress;
         }
     }
 }

@@ -34,11 +34,11 @@ namespace LocationService.Api.Configure
            // var cache = CacheFactory.FromConfiguration<Adress>("AdressCache", cfg);
            // var cachelst = CacheFactory.FromConfiguration<List<Adress>>("AdressCacheLst", cfg);
 
-            container.RegisterInstance(new AdressesService(new IAddressProvider[] { new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.FromSeconds(30)) }));
+            container.RegisterInstance(new AddressesService(new IAddressProvider[] { new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.FromSeconds(30)) }));
 
-            container.RegisterInstance(new SearchAdressService(container.GetInstance<AdressesService>()));
+            container.RegisterInstance(new SearchAdressService(container.GetInstance<AddressesService>()));
 
-            container.RegisterInstance(new AdressesController(container.GetInstance<SearchAdressService>()));
+            container.RegisterInstance(new AddressesController(container.GetInstance<SearchAdressService>()));
 
             container.ScopeManagerProvider = new PerLogicalCallContextScopeManagerProvider();
 

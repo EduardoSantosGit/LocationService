@@ -23,7 +23,7 @@ namespace LocationService.Infrastructure.Services.Provider
             _apiUrl = "ws/";
         }
 
-        public async Task<Result<List<Adress>>> GetAdressesTerm(string term)
+        public async Task<Result<List<Address>>> GetAddressesTerm(string term)
         {
             throw new NotImplementedException();
         }
@@ -34,17 +34,17 @@ namespace LocationService.Infrastructure.Services.Provider
             return await ResultOperations.ReadHttpResult(result);
         }
 
-        public async Task<Result<Adress>> GetAdressesZipCode(string zipCode)
+        public async Task<Result<Address>> GetAddressesZipCode(string zipCode)
         {
             var result = await this.GetSendAsync(zipCode);
 
             if(result.Status == ResultCode.OK)
             {
-                var routePostal = JsonConvert.DeserializeObject<AdressRoutePostal>(result.ValueType);
-                return new Result<Adress>(ResultCode.OK, Map.ConvertRouteAsAdress(routePostal));
+                var routePostal = JsonConvert.DeserializeObject<AddressRoutePostal>(result.ValueType);
+                return new Result<Address>(ResultCode.OK, Map.ConvertRouteAsAdress(routePostal));
             }
 
-            return new Result<Adress>(result.Status, result.Value);
+            return new Result<Address>(result.Status, result.Value);
         }
 
     }

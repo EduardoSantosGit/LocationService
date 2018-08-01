@@ -9,7 +9,7 @@ namespace LocationService.Domain.Interfaces
 {
     public interface IAddressProvider
     {
-        Task<Result<Adress>> GetAdressesZipCode(string zipCode);
-        Task<Result<List<Adress>>> GetAdressesTerm(string term);
+        Task<Result<Address>> GetAddressesZipCode(string zipCode);
+        Task<Result<List<Address>>> GetAddressesTerm(string term);
     }
 }

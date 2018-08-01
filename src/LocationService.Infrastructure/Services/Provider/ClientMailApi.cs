@@ -2,7 +2,7 @@
 using LocationService.Domain.Interfaces;
 using LocationService.Domain.Models;
 using LocationService.Infrastructure.Common;
-using LocationService.Infrastructure.Services.Adresses;
+using LocationService.Infrastructure.Services.Addresses;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -18,7 +18,7 @@ namespace LocationService.Infrastructure.Services.Provider
         public readonly string _baseUrl;
         public readonly string _apiUrl;
         public readonly ScrapParser _scrapParser;
-        public readonly AdressesServiceScrap _adressesServiceScrap;
+        public readonly AddressesServiceScrap _addressesServiceScrap;
 
         public ClientMailApi(string baseUrl, TimeSpan timeout) : base(baseUrl, timeout)
         {
@@ -29,7 +29,7 @@ namespace LocationService.Infrastructure.Services.Provider
             Client.DefaultRequestHeaders.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
             Client.DefaultRequestHeaders.Add("Accept-Language", "en-US,en;q=0.9");
 
-            _adressesServiceScrap = new AdressesServiceScrap();
+            _addressesServiceScrap = new AddressesServiceScrap();
             _scrapParser = new ScrapParser();
         }
 
@@ -47,7 +47,7 @@ namespace LocationService.Infrastructure.Services.Provider
             return await ResultOperations.ReadHttpResult(result);
         }
 
-        public async Task<Result<Adress>> GetAdressesZipCode(string zipCode)
+        public async Task<Result<Address>> GetAddressesZipCode(string zipCode)
         {
             var result = await PostSendAsync(zipCode);
 
@@ -57,15 +57,15 @@ namespace LocationService.Infrastructure.Services.Provider
 
                 if (valid)
                 {
-                    return new Result<Adress>(ResultCode.OK,
-                        _adressesServiceScrap.GetAdressesPageCode(result.ValueType));
+                    return new Result<Address>(ResultCode.OK,
+                        _addressesServiceScrap.GetAddressesPageCode(result.ValueType));
                 } 
             }
 
-            return new Result<Adress>(result.Status, result.Value);
+            return new Result<Address>(result.Status, result.Value);
         }
 
-        public async Task<Result<List<Adress>>> GetAdressesTerm(string term)
+        public async Task<Result<List<Address>>> GetAddressesTerm(string term)
         {
             var result = await PostSendAsync(term);
 
@@ -75,12 +75,12 @@ namespace LocationService.Infrastructure.Services.Provider
 
                 if (valid)
                 {
-                    return new Result<List<Adress>>(ResultCode.OK, 
-                        _adressesServiceScrap.GetAdressesPageTerm(result.ValueType));
+                    return new Result<List<Address>>(ResultCode.OK, 
+                        _addressesServiceScrap.GetAddressesPageTerm(result.ValueType));
                 }
             }
            
-            return new Result<List<Adress>>(result.Status, result.Value);
+            return new Result<List<Address>>(result.Status, result.Value);
         }
     }
 }
