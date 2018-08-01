@@ -21,7 +21,7 @@ namespace LocationService.Infrastructure.Services.Adresses
             _addressProvider = addressProvider;
         }
 
-        public async Task<Adress> GetAdressesZipCode(string zipCode)
+        public async Task<Result<Adress>> GetAdressesZipCode(string zipCode)
         {
             var serAvailable = _addressProvider.Count();
             var serviceUsed = _addressProvider.First();
@@ -39,10 +39,13 @@ namespace LocationService.Infrastructure.Services.Adresses
                 }
             }
 
-            return result.ValueType;
+            if (result.Status == ResultCode.OK)
+                return new Result<Adress>(ResultCode.OK, result.ValueType);
+
+            return new Result<Adress>(result.Status, result.Value);
         }
 
-        public async Task<IEnumerable<Adress>> GetAdressesTerm(string term)
+        public async Task<Result<IEnumerable<Adress>>> GetAdressesTerm(string term)
         {
             var serAvailable = _addressProvider.Count();
             var serviceUsed = _addressProvider.First();
@@ -60,7 +63,10 @@ namespace LocationService.Infrastructure.Services.Adresses
                 }
             }
 
-            return result.ValueType;
+            if (result.Status == ResultCode.OK)
+                return new Result<IEnumerable<Adress>>(ResultCode.OK, result.ValueType);
+
+            return new Result<IEnumerable<Adress>>(result.Status, result.Value);
         }
 
     }

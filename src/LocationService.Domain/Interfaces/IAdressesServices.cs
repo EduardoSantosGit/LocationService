@@ -1,4 +1,5 @@
-﻿using LocationService.Domain.Models;
+﻿using LocationService.Domain.Common;
+using LocationService.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +9,7 @@ namespace LocationService.Domain.Interfaces
 {
     public interface IAdressesServices
     {
-        Task<Adress> GetAdressesZipCode(string zipCode);
-        Task<IEnumerable<Adress>> GetAdressesTerm(string term);
+        Task<Result<Adress>> GetAdressesZipCode(string zipCode);
+        Task<Result<IEnumerable<Adress>>> GetAdressesTerm(string term);
     }
 }
