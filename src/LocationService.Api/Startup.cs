@@ -59,6 +59,9 @@ namespace LocationService
             });
 
             var container = InjectionDependency.ConfigureService();
+
+            MapperDomain.Configure();
+
             return container.CreateServiceProvider(services);
         }
 

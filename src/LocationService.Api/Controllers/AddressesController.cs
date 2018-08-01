@@ -1,4 +1,7 @@
-﻿using LocationService.Domain.Services.Addresses;
+﻿using AutoMapper;
+using LocationService.Domain.Models;
+using LocationService.Domain.Resources;
+using LocationService.Domain.Services.Addresses;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,8 +24,15 @@ namespace LocationService.Api.Controllers
         [HttpGet("zipCode/{zipcode}")]
         public async Task<IActionResult> GetAdressCode(string zipcode)
         {
-            var values = await _searchAddressService.FindByZipCode(zipcode);
-            return new OkObjectResult(values);
+            var resultAddress = await _searchAddressService.FindByZipCode(zipcode);
+
+            if(resultAddress.Status == Domain.Common.ResultCode.OK)
+            {
+                var resource = Mapper.Map<Address, AddressResource>(resultAddress.ValueType);
+                return new OkObjectResult(resource);
+            }
+
+            return new OkObjectResult(null);
         }
 
         [HttpGet("term/{term}")]

@@ -1,5 +1,7 @@
-﻿using LocationService.Domain.Interfaces;
+﻿using LocationService.Domain.Common;
+using LocationService.Domain.Interfaces;
 using LocationService.Domain.Models;
+using LocationService.Domain.Resources;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,23 +18,25 @@ namespace LocationService.Domain.Services.Addresses
             _addressesServices = addressesServices;
         }
 
-        public async Task<Address> FindByZipCode(string zipCode)
+        public async Task<Result<Address>> FindByZipCode(string zipCode)
         {
             var result = await _addressesServices.GetAddressesZipCode(zipCode);
 
-            if(result.Status == Common.ResultCode.OK)
-            {
-                
-            }
+            if(result.Status == ResultCode.OK)
+                return new Result<Address>(ResultCode.OK, result.ValueType);
 
-            return result.ValueType;
+            return new Result<Address>(result.Status, result.Value);
         }
         
 
-        public async Task<IEnumerable<Address>> FindByTerm(string term)
+        public async Task<Result<IEnumerable<Address>>> FindByTerm(string term)
         {
             var result = await _addressesServices.GetAddressesTerm(term);
-            return result.ValueType;
+
+            if (result.Status == ResultCode.OK)
+                return new Result<IEnumerable<Address>>(ResultCode.OK, result.ValueType);
+
+            return new Result<IEnumerable<Address>>(result.Status, result.Value);
         }
         
     }
