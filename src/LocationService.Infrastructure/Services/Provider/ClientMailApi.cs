@@ -58,8 +58,9 @@ namespace LocationService.Infrastructure.Services.Provider
                 {
                     return new Result<Address>(ResultCode.OK,
                         _addressesServiceScrap.GetAddressesPageCode(result.ValueType));
-                } 
-                //else
+                }
+                else
+                    return new Result<Address>(ResultCode.NotFound, "requested data not found");
             }
 
             return new Result<Address>(result.Status, result.Value);
@@ -74,10 +75,11 @@ namespace LocationService.Infrastructure.Services.Provider
                 if (_scrapParser.ContainsValue(result.ValueType, "<p>DADOS ENCONTRADOS COM SUCESSO.</p>", true) == true
                     || _scrapParser.ContainsValue(result.ValueType, "<p>RESULTADO SUPERIOR A ", true) == true)
                 {
-                    return new Result<List<Address>>(ResultCode.OK, 
+                    return new Result<List<Address>>(ResultCode.OK,
                         _addressesServiceScrap.GetAddressesPageTerm(result.ValueType));
                 }
-                //else
+                else
+                    return new Result<List<Address>>(ResultCode.NotFound, "requested data not found");
             }
            
             return new Result<List<Address>>(result.Status, result.Value);
