@@ -12,7 +12,7 @@ namespace LocationService.Api.Controllers
 {
     [Route("api/v1/address/")]
     [Produces("application/json")]
-    public class AddressesController : Controller
+    public class AddressesController : ControllerExtensions
     {
         public SearchAddressService _searchAddressService;
 
@@ -31,7 +31,7 @@ namespace LocationService.Api.Controllers
                 var resource = Mapper.Map<Address, AddressResource>(resultAddress.ValueType);
                 return new OkObjectResult(resource);
             }
-
+            
             return new OkObjectResult(null);
         }
 
