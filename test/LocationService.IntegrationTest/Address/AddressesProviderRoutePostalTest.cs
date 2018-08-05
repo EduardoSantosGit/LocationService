@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace LocationService.IntegrationTest.Adress
+namespace LocationService.IntegrationTest.Address
 {
-    public class AdressesProviderRoutePostalTest
+    public class AddressesProviderRoutePostalTest
     {
 
         //[Fact]
