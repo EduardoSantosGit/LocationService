@@ -55,5 +55,18 @@ namespace LocationService.IntegrationTest.Address
             Assert.Equal(1, address.Count);
         }
 
+        [Fact]
+        public async Task GetAddressesPage_WhenHtmlDataTermAll_ReturnsListAddressLarger1000()
+        {
+            var addressApi = new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.FromSeconds(30));
+            var result = await addressApi.PostSendAsync("Avenida Paulista");
+
+            var scrap = CreateInstance();
+            var address = scrap.GetAddressesPageTerm(result.ValueType);
+
+            Assert.NotNull(address);
+            Assert.Equal(1000, address.Count);
+        }
+
     }
 }
