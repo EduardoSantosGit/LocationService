@@ -16,7 +16,7 @@ namespace LocationService.IntegrationTest.Address
         [Fact]
         public async Task GetAddressesPage_WhenHtmlData_ReturnsAddress()
         {
-            var addressApi = new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.MaxValue);
+            var addressApi = new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.FromSeconds(30));
             var result = await addressApi.PostSendAsync("01311200");
 
             var scrap = CreateInstance();
@@ -32,7 +32,7 @@ namespace LocationService.IntegrationTest.Address
         [Fact]
         public async Task GetAddressesPage_WhenHtmlDataTerm_ReturnsListAddress()
         {
-            var addressApi = new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.MaxValue);
+            var addressApi = new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.FromSeconds(30));
             var result = await addressApi.PostSendAsync("Avenida Vital Brasil");
 
             var scrap = CreateInstance();
@@ -45,7 +45,7 @@ namespace LocationService.IntegrationTest.Address
         [Fact]
         public async Task GetAddressesPage_WhenHtmlDataTermZipcode_ReturnsListAddress()
         {
-            var addressApi = new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.MaxValue);
+            var addressApi = new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.FromSeconds(30));
             var result = await addressApi.PostSendAsync("01311200");
 
             var scrap = CreateInstance();
