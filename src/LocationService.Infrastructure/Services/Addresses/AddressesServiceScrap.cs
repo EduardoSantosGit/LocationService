@@ -16,6 +16,25 @@ namespace LocationService.Infrastructure.Services.Addresses
             _scrapParser = new ScrapParser();
         }
 
+        public int CountPagesTable(string initialHtml)
+        {
+            return 0;
+        }
+
+        public List<Address> GetAddressesPageTermTemp(string html)
+        {
+            var count = CountPagesTable(html);
+
+            if(count > 1)
+            {
+                return null;
+            }
+            else
+            {
+                return GetAddressesPageTerm(html);
+            }
+        }
+
         public Address GetAddressesPageCode(string html)
         {
             var table = _scrapParser.ScrapBlockPage(html, "<table class=\"tmptabela\">", "</table>");
