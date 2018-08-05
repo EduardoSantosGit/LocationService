@@ -11,6 +11,8 @@ namespace LocationService.Infrastructure.Services.Provider
 {
     public class ClientPostmon : ProviderHttp, IAddressProvider
     {
+        public readonly string _baseUrl;
+        public readonly string _apiUrl;
 
         public ClientPostmon(string baseUrl, TimeSpan timeout) 
             : base(baseUrl, timeout)
@@ -25,7 +27,15 @@ namespace LocationService.Infrastructure.Services.Provider
 
         public Task<Result<Address>> GetAddressesZipCode(string zipCode)
         {
-            throw new NotImplementedException();
+            var result = await this.GetSendAsync(zipCode);
+
+            if(result.Status == ResultCode.OK)
+            {
+                var routePostal = JsonConvert.DeserializeObject<AddressRoutePostal>(result.ValueType);
+                return new Result<Address>(ResultCode.OK, Map.ConvertRouteAsAdress(routePostal));
+            }
+
+            return new Result<Address>(result.Status, result.Value);
         }
     }
 }
