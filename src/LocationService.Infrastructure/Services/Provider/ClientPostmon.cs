@@ -25,14 +25,20 @@ namespace LocationService.Infrastructure.Services.Provider
             throw new NotImplementedException();
         }
 
-        public Task<Result<Address>> GetAddressesZipCode(string zipCode)
+        public async Task<Result<string>> GetSendAsync(string zipCode)
+        {
+            var result = await this.GetAsync($@"{_baseUrl}{_apiUrl}{zipCode}/json");
+            return await ResultOperations.ReadHttpResult(result);
+        }
+
+        public async Task<Result<Address>> GetAddressesZipCode(string zipCode)
         {
             var result = await this.GetSendAsync(zipCode);
 
             if(result.Status == ResultCode.OK)
             {
-                var routePostal = JsonConvert.DeserializeObject<AddressRoutePostal>(result.ValueType);
-                return new Result<Address>(ResultCode.OK, Map.ConvertRouteAsAdress(routePostal));
+                //var routePostal = JsonConvert.DeserializeObject<AddressRoutePostal>(result.ValueType);
+                //return new Result<Address>(ResultCode.OK, Map.ConvertRouteAsAdress(routePostal));
             }
 
             return new Result<Address>(result.Status, result.Value);

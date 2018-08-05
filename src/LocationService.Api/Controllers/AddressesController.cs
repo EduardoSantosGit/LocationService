@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LocationService.Domain.Common;
 using LocationService.Domain.Models;
 using LocationService.Domain.Resources;
 using LocationService.Domain.Services.Addresses;
@@ -31,8 +32,8 @@ namespace LocationService.Api.Controllers
                 var resource = Mapper.Map<Address, AddressResource>(resultAddress.ValueType);
                 return new OkObjectResult(resource);
             }
-            
-            return new OkObjectResult(null);
+
+            return ReturnResult(new Result<string>(resultAddress.Status, resultAddress.Value));
         }
 
         [HttpGet("term/{term}")]
@@ -49,7 +50,7 @@ namespace LocationService.Api.Controllers
                 return new OkObjectResult(resource);
             }
 
-            return new OkObjectResult(null);
+            return ReturnResult(new Result<string>(resultAddresses.Status, resultAddresses.Value));
         }
     }
 }
