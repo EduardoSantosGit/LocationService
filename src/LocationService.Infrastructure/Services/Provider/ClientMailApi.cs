@@ -84,5 +84,24 @@ namespace LocationService.Infrastructure.Services.Provider
            
             return new Result<List<Address>>(result.Status, result.Value);
         }
+
+        private Result<List<Address>> SliceManagement(string html)
+        {
+
+            var count = _addressesServiceScrap.CountPagesTable(html);
+
+            if(count > 1)
+            {
+
+            }
+            else
+            {
+                return new Result<List<Address>>(ResultCode.OK, 
+                    _addressesServiceScrap.GetAddressesPageTerm(html));
+            }
+
+            return null;
+        }
+
     }
 }
