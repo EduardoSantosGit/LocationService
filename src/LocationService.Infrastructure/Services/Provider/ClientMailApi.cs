@@ -47,6 +47,24 @@ namespace LocationService.Infrastructure.Services.Provider
             return await ResultOperations.ReadHttpResult(result);
         }
 
+        public async Task<Result<string>> PostSliceSendAsync(string term, string lines, string init, string last)
+        {
+            var nvc = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("relaxation", term),
+                new KeyValuePair<string, string>("exata", "S"),
+                new KeyValuePair<string, string>("semelhante", "N"),
+                new KeyValuePair<string, string>("tipoCEP", "ALL"),
+                new KeyValuePair<string, string>("qtdrow", lines),
+                new KeyValuePair<string, string>("pagini", init),
+                new KeyValuePair<string, string>("pagfim", last)
+            };
+
+            var result = await this.PostFormUrlEncodedAsync(_apiUrl, nvc);
+
+            return await ResultOperations.ReadHttpResult(result);
+        }
+
         public async Task<Result<Address>> GetAddressesZipCode(string zipCode)
         {
             var result = await PostSendAsync(zipCode);
@@ -92,7 +110,7 @@ namespace LocationService.Infrastructure.Services.Provider
 
             if(count > 1)
             {
-
+                
             }
             else
             {
