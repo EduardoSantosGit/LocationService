@@ -18,7 +18,10 @@ namespace LocationService.Infrastructure.Services.Addresses
 
         public int CountPagesTable(string initialHtml)
         {
-            return 0;
+            var blockQuantity = _scrapParser.ScrapBlockPage(initialHtml, "[ Nova Consulta ]</a>", "<form name=\"Geral\" id=\"Geral\"");
+            var quantity = _scrapParser.ScrapBlockPage(blockQuantity, "de", "<br><br>")?.Trim();
+            var count = Convert.ToInt32(quantity);
+            return count;
         }
 
         public Address GetAddressesPageCode(string html)

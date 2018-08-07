@@ -110,7 +110,6 @@ namespace LocationService.Infrastructure.Services.Provider
 
             if(count > 1)
             {
-                
             }
             else
             {
