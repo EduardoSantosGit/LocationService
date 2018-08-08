@@ -103,13 +103,14 @@ namespace LocationService.Infrastructure.Services.Provider
             return new Result<List<Address>>(result.Status, result.Value);
         }
 
-        private Result<List<Address>> SliceManagement(string html)
+        public Result<List<Address>> SliceManagement(string html)
         {
 
             var count = _addressesServiceScrap.CountPagesTable(html);
 
             if(count > 1)
             {
+                var current = 51;
             }
             else
             {
