@@ -110,7 +110,7 @@ namespace LocationService.Infrastructure.Services.Provider
 
             if(count > 1)
             {
-                var current = 51;
+
             }
             else
             {

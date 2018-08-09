@@ -2,6 +2,8 @@
 using LocationService.Domain.Interfaces;
 using LocationService.Domain.Models;
 using LocationService.Infrastructure.Common;
+using LocationService.Infrastructure.Utils;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,7 +19,8 @@ namespace LocationService.Infrastructure.Services.Provider
         public ClientPostmon(string baseUrl, TimeSpan timeout) 
             : base(baseUrl, timeout)
         {
-            //http://api.postmon.com.br/v1/
+            _baseUrl = "http://api.postmon.com.br/";
+            _apiUrl = "v1/cep/";
         }
 
         public Task<Result<List<Address>>> GetAddressesTerm(string term)
@@ -27,7 +30,7 @@ namespace LocationService.Infrastructure.Services.Provider
 
         public async Task<Result<string>> GetSendAsync(string zipCode)
         {
-            var result = await this.GetAsync($@"{_baseUrl}{_apiUrl}{zipCode}/json");
+            var result = await this.GetAsync($@"{_baseUrl}{_apiUrl}{zipCode}");
             return await ResultOperations.ReadHttpResult(result);
         }
 
@@ -35,10 +38,10 @@ namespace LocationService.Infrastructure.Services.Provider
         {
             var result = await this.GetSendAsync(zipCode);
 
-            if(result.Status == ResultCode.OK)
+            if (result.Status == ResultCode.OK)
             {
-                //var routePostal = JsonConvert.DeserializeObject<AddressRoutePostal>(result.ValueType);
-                //return new Result<Address>(ResultCode.OK, Map.ConvertRouteAsAdress(routePostal));
+                var routePostal = JsonConvert.DeserializeObject<AddressRoutePostal>(result.ValueType);
+                return new Result<Address>(ResultCode.OK, Map.ConvertRouteAsAdress(routePostal));
             }
 
             return new Result<Address>(result.Status, result.Value);
