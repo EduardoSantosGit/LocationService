@@ -1,4 +1,5 @@
-﻿using LocationService.Domain.Models;
+﻿using LocationService.Domain.Common;
+using LocationService.Domain.Models;
 using LocationService.Infrastructure.Common;
 using System;
 using System.Collections.Generic;
@@ -24,25 +25,33 @@ namespace LocationService.Infrastructure.Services.Addresses
             return count;
         }
 
-        public Address GetAddressesPageCode(string html)
+        public Result<Address> GetAddressesPageCode(string html)
         {
-            var table = _scrapParser.ScrapBlockPage(html, "<table class=\"tmptabela\">", "</table>");
-
-            var lines = table.SplitString("<tr>");
-            var columns = lines[1].SplitString("<td");
-
-            var adress = new Address
+            var address = default(Address);
+            try
             {
-                Street = _scrapParser.ScrapBlockPage(columns[1], "\">", "</td>")?.Trim(),
-                District = _scrapParser.ScrapBlockPage(columns[2], "\">", "</td>")?.Trim(),
-                Locality = _scrapParser.ScrapBlockPage(columns[3], "\">", "</td>")?.Trim(),
-                ZipCode = _scrapParser.ScrapBlockPage(columns[4], "\">", "</td>")?.Trim()
-            };
+                var table = _scrapParser.ScrapBlockPage(html, "<table class=\"tmptabela\">", "</table>");
 
-            return adress;
+                var lines = table.SplitString("<tr>");
+                var columns = lines[1].SplitString("<td");
+
+                address = new Address
+                {
+                    Street = _scrapParser.ScrapBlockPage(columns[1], "\">", "</td>")?.Trim(),
+                    District = _scrapParser.ScrapBlockPage(columns[2], "\">", "</td>")?.Trim(),
+                    Locality = _scrapParser.ScrapBlockPage(columns[3], "\">", "</td>")?.Trim(),
+                    ZipCode = _scrapParser.ScrapBlockPage(columns[4], "\">", "</td>")?.Trim()
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Result<Address>(ResultCode.Error, ex.Message);
+            }
+
+            return new Result<Address>(ResultCode.OK, address);
         }
 
-        public List<Address> GetAddressesPageTerm(string html)
+        public Result<List<Address>> GetAddressesPageTerm(string html)
         {
             var table = _scrapParser.ScrapBlockPage(html, "<table class=\"tmptabela\">", "</table>");
             var lines = table.SplitString("<tr");
@@ -50,56 +59,63 @@ namespace LocationService.Infrastructure.Services.Addresses
             var listAddress = new List<Address>();
             var listAddressDouble = new List<Address>();
 
-            for (var i = 2; i < lines.Length; i++)
+            try
             {
-                var columns = lines[i].SplitString("<td");
-
-                var col = _scrapParser.ScrapBlockPage(columns[1], "\">", "</td>")?.Trim();
-
-                if (col.Contains("<br"))
+                for (var i = 2; i < lines.Length; i++)
                 {
-                    var duplicate = col.SplitString("<br>");
+                    var columns = lines[i].SplitString("<td");
 
-                    for (var j = 0; j < duplicate.Length; j++)
+                    var col = _scrapParser.ScrapBlockPage(columns[1], "\">", "</td>")?.Trim();
+
+                    if (col.Contains("<br"))
                     {
-                        if (!string.IsNullOrEmpty(duplicate[j]))
-                        {
-                            var street = default(string);
-                            if (duplicate[j].Contains("</a>") || duplicate[j].Contains(">"))
-                            {
-                                street = duplicate[j]?.Replace("</a>", "")?.Trim();
-                            }
-                            else
-                            {
-                                street = duplicate[j]?.Trim();
-                            }
+                        var duplicate = col.SplitString("<br>");
 
-                            listAddress.Add(new Address
+                        for (var j = 0; j < duplicate.Length; j++)
+                        {
+                            if (!string.IsNullOrEmpty(duplicate[j]))
                             {
-                                Street = street,
-                                District = _scrapParser.ScrapBlockPage(columns[2], "\">", "</td>")?.Trim(),
-                                Locality = _scrapParser.ScrapBlockPage(columns[3], "\">", "</td>")?.Trim(),
-                                ZipCode = _scrapParser.ScrapBlockPage(columns[4], "\">", "</td>")?.Trim()
-                            });
+                                var street = default(string);
+                                if (duplicate[j].Contains("</a>") || duplicate[j].Contains(">"))
+                                {
+                                    street = duplicate[j]?.Replace("</a>", "")?.Trim();
+                                }
+                                else
+                                {
+                                    street = duplicate[j]?.Trim();
+                                }
+
+                                listAddress.Add(new Address
+                                {
+                                    Street = street,
+                                    District = _scrapParser.ScrapBlockPage(columns[2], "\">", "</td>")?.Trim(),
+                                    Locality = _scrapParser.ScrapBlockPage(columns[3], "\">", "</td>")?.Trim(),
+                                    ZipCode = _scrapParser.ScrapBlockPage(columns[4], "\">", "</td>")?.Trim()
+                                });
+                            }
                         }
                     }
-                }
-                else
-                {
-                    var adress = new Address
+                    else
                     {
-                        Street = _scrapParser.ScrapBlockPage(columns[1], "\">", "</td>")?.Trim(),
-                        District = _scrapParser.ScrapBlockPage(columns[2], "\">", "</td>")?.Trim(),
-                        Locality = _scrapParser.ScrapBlockPage(columns[3], "\">", "</td>")?.Trim(),
-                        ZipCode = _scrapParser.ScrapBlockPage(columns[4], "\">", "</td>")?.Trim()
-                    };
+                        var adress = new Address
+                        {
+                            Street = _scrapParser.ScrapBlockPage(columns[1], "\">", "</td>")?.Trim(),
+                            District = _scrapParser.ScrapBlockPage(columns[2], "\">", "</td>")?.Trim(),
+                            Locality = _scrapParser.ScrapBlockPage(columns[3], "\">", "</td>")?.Trim(),
+                            ZipCode = _scrapParser.ScrapBlockPage(columns[4], "\">", "</td>")?.Trim()
+                        };
 
-                    listAddress.Add(adress);
+                        listAddress.Add(adress);
+                    }
+
                 }
-                
+            }
+            catch (Exception ex)
+            {
+                return new Result<List<Address>>(ResultCode.Error, ex.Message);
             }
 
-            return listAddress;
+            return new Result<List<Address>>(ResultCode.OK, listAddress);
         }
     }
 }
