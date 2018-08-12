@@ -17,7 +17,7 @@ namespace LocationService.Test.Address
 
             var addressScrap = new AddressesServiceScrap();
 
-            var list = addressScrap.GetAddressesPageTerm(html);
+            var list = addressScrap.GetAddressesPageTerm(html).ValueType;
 
             Assert.NotNull(list);
             Assert.Equal(24, list.Count);
@@ -30,7 +30,7 @@ namespace LocationService.Test.Address
 
             var addressScrap = new AddressesServiceScrap();
 
-            var address = addressScrap.GetAddressesPageCode(html);
+            var address = addressScrap.GetAddressesPageCode(html).ValueType;
 
             Assert.NotNull(address);
             Assert.Equal("Avenida Paulista - de 1047 a 1865 - lado ímpar", address.Street);
