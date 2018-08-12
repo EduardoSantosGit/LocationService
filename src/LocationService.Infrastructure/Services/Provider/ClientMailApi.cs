@@ -47,7 +47,7 @@ namespace LocationService.Infrastructure.Services.Provider
             return await ResultOperations.ReadHttpResult(result);
         }
 
-        public async Task<Result<string>> PostSliceSendAsync(string term, string lines, string init, string last)
+        public async Task<Result<string>> PostSliceSendAsync(string term, int lines, int init, int last)
         {
             var nvc = new List<KeyValuePair<string, string>>
             {
@@ -55,9 +55,9 @@ namespace LocationService.Infrastructure.Services.Provider
                 new KeyValuePair<string, string>("exata", "S"),
                 new KeyValuePair<string, string>("semelhante", "N"),
                 new KeyValuePair<string, string>("tipoCEP", "ALL"),
-                new KeyValuePair<string, string>("qtdrow", lines),
-                new KeyValuePair<string, string>("pagini", init),
-                new KeyValuePair<string, string>("pagfim", last)
+                new KeyValuePair<string, string>("qtdrow", lines.ToString()),
+                new KeyValuePair<string, string>("pagini", init.ToString()),
+                new KeyValuePair<string, string>("pagfim", last.ToString())
             };
 
             var result = await this.PostFormUrlEncodedAsync(_apiUrl, nvc);
@@ -111,19 +111,30 @@ namespace LocationService.Infrastructure.Services.Provider
             return new Result<List<Address>>(result.Status, result.Value);
         }
 
-        public Result<List<Address>> SliceManagement(string html)
+        public Result<List<Address>> SliceManagement(string term, string html)
         {
 
             var count = _addressesServiceScrap.CountPagesTable(html);
 
-            if(count > 1)
+            if(count > 50)
             {
+                var pointerInit = 51;
+                var rest = count - 50;
+                var lines = 0;
 
-            }
-            else
-            {
-                return new Result<List<Address>>(ResultCode.OK, 
-                    _addressesServiceScrap.GetAddressesPageTerm(html));
+                do
+                {
+                    if (rest >= 90)
+                        lines = pointerInit + 89;
+                    else
+                        lines = (pointerInit + rest) - 1;
+
+                    var ret = PostSliceSendAsync(term, 50, pointerInit, lines);
+
+                    pointerInit = pointerInit + lines;
+                } while (count == pointerInit);
+                
+
             }
 
             return null;

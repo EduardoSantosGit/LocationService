@@ -61,7 +61,7 @@ namespace LocationService.IntegrationTest.Address
             var addressApi = new ClientMailApi("http://www.buscacep.correios.com.br/", TimeSpan.FromSeconds(30));
             var result = await addressApi.PostSendAsync("Avenida Paulista");
 
-            var slice = addressApi.SliceManagement(result.ValueType);
+            var slice = addressApi.SliceManagement("Avenida Paulista", result.ValueType);
 
             var scrap = CreateInstance();
             var address = scrap.GetAddressesPageTerm(result.ValueType).ValueType;
