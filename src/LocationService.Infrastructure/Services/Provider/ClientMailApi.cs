@@ -74,8 +74,12 @@ namespace LocationService.Infrastructure.Services.Provider
                 if(_scrapParser.ContainsValue(result.ValueType, "<p>DADOS ENCONTRADOS COM SUCESSO.</p>", true) == true
                     || _scrapParser.ContainsValue(result.ValueType, "<p>RESULTADO SUPERIOR A ", true) == true)
                 {
-                    return new Result<Address>(ResultCode.OK,
-                        _addressesServiceScrap.GetAddressesPageCode(result.ValueType));
+                    var retAddress = _addressesServiceScrap.GetAddressesPageCode(result.ValueType);
+
+                    if(retAddress.Status == ResultCode.OK)
+                        return new Result<Address>(ResultCode.OK, retAddress.ValueType);
+                    else
+                        return new Result<Address>(retAddress.Status, retAddress.Value);
                 }
                 else
                     return new Result<Address>(ResultCode.NotFound, "requested data not found");
@@ -93,8 +97,12 @@ namespace LocationService.Infrastructure.Services.Provider
                 if (_scrapParser.ContainsValue(result.ValueType, "<p>DADOS ENCONTRADOS COM SUCESSO.</p>", true) == true
                     || _scrapParser.ContainsValue(result.ValueType, "<p>RESULTADO SUPERIOR A ", true) == true)
                 {
-                    return new Result<List<Address>>(ResultCode.OK,
-                        _addressesServiceScrap.GetAddressesPageTerm(result.ValueType));
+                    var retAddress = _addressesServiceScrap.GetAddressesPageTerm(result.ValueType);
+
+                    if(retAddress.Status == ResultCode.OK)
+                        return new Result<List<Address>>(ResultCode.OK, retAddress.ValueType);
+                    else
+                        return new Result<List<Address>>(retAddress.Status, retAddress.Value);
                 }
                 else
                     return new Result<List<Address>>(ResultCode.NotFound, "requested data not found");
