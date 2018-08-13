@@ -111,7 +111,7 @@ namespace LocationService.Infrastructure.Services.Provider
             return new Result<List<Address>>(result.Status, result.Value);
         }
 
-        public Result<List<Address>> SliceManagement(string term, string html)
+        public async Task<Result<List<Address>>> SliceManagement(string term, string html)
         {
 
             var count = _addressesServiceScrap.CountPagesTable(html);
@@ -129,7 +129,7 @@ namespace LocationService.Infrastructure.Services.Provider
                     else
                         lines = (pointerInit + rest) - 1;
 
-                    var ret = PostSliceSendAsync(term, 50, pointerInit, lines);
+                    var ret = await PostSliceSendAsync(term, 50, pointerInit, lines);
 
                     pointerInit = pointerInit + lines;
                 } while (count == pointerInit);
