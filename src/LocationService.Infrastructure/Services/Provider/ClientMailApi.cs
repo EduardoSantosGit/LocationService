@@ -118,21 +118,30 @@ namespace LocationService.Infrastructure.Services.Provider
 
             if(count > 50)
             {
-                var pointerInit = 51;
+                var pointerInit = 50;
                 var rest = count - 50;
                 var lines = 0;
+                var p = 0;
 
                 do
                 {
                     if (rest >= 90)
-                        lines = pointerInit + 89;
+                    {
+                        lines = pointerInit + 90;
+                        p = 90;
+                    }
                     else
-                        lines = (pointerInit + rest) - 1;
+                    {
+                        lines = (pointerInit + rest);
+                        p = (pointerInit + rest);
+                    }
+                        
+                    var ret = await PostSliceSendAsync(term, 50, pointerInit+1, lines);
 
-                    var ret = await PostSliceSendAsync(term, 50, pointerInit, lines);
+                    pointerInit = lines;
+                    rest = p;
 
-                    pointerInit = pointerInit + lines;
-                } while (count == pointerInit);
+                } while (count != pointerInit);
                 
 
             }
