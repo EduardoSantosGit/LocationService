@@ -121,25 +121,41 @@ namespace LocationService.Infrastructure.Services.Provider
                 var pointerInit = 50;
                 var rest = count - 50;
                 var lines = 0;
-                var p = 0;
+                var subtraction = 0;
+
+                var listAddress = new List<Address>();
 
                 do
                 {
                     if (rest >= 90)
                     {
                         lines = pointerInit + 90;
-                        p = 90;
+                        subtraction = 90;
                     }
                     else
                     {
                         lines = (pointerInit + rest);
-                        p = (pointerInit + rest);
+                        subtraction = (pointerInit + rest);
                     }
                         
-                    var ret = await PostSliceSendAsync(term, 50, pointerInit+1, lines);
+                    var retString = await PostSliceSendAsync(term, 50, pointerInit+1, lines);
+
+                    if (retString.Status != ResultCode.OK)
+                        return new Result<List<Address>>(retString.Status, retString.Value);
+
+                    var retAddress = _addressesServiceScrap.GetAddressesPageTerm(retString.ValueType);
+
+                    if (retAddress.Status != ResultCode.OK)
+                        return new Result<List<Address>>(retAddress.Status, retAddress.Value);
+
+
+                    foreach (var item in retAddress.ValueType)
+                    {
+                        listAddress.Add(item);
+                    }
 
                     pointerInit = lines;
-                    rest = p;
+                    rest = rest - subtraction;
 
                 } while (count != pointerInit);
                 
