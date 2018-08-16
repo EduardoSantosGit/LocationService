@@ -97,9 +97,9 @@ namespace LocationService.Infrastructure.Services.Provider
                 if (_scrapParser.ContainsValue(result.ValueType, "<p>DADOS ENCONTRADOS COM SUCESSO.</p>", true) == true
                     || _scrapParser.ContainsValue(result.ValueType, "<p>RESULTADO SUPERIOR A ", true) == true)
                 {
-                    var retAddress = _addressesServiceScrap.GetAddressesPageTerm(result.ValueType);
+                    var retAddress = await SliceManagement(term, result.ValueType);
 
-                    if(retAddress.Status == ResultCode.OK)
+                    if (retAddress.Status == ResultCode.OK)
                         return new Result<List<Address>>(ResultCode.OK, retAddress.ValueType);
                     else
                         return new Result<List<Address>>(retAddress.Status, retAddress.Value);
@@ -113,17 +113,22 @@ namespace LocationService.Infrastructure.Services.Provider
 
         public async Task<Result<List<Address>>> SliceManagement(string term, string html)
         {
-
             var count = _addressesServiceScrap.CountPagesTable(html);
+            var listAddress = new List<Address>();
 
-            if(count > 50)
+            var retAddress = _addressesServiceScrap.GetAddressesPageTerm(html);
+
+            if (retAddress.Status != ResultCode.OK)
+                return new Result<List<Address>>(retAddress.Status, retAddress.Value);
+
+            listAddress.AddRange(retAddress.ValueType);
+
+            if (count > 50)
             {
                 var pointerInit = 50;
                 var rest = count - 50;
                 var lines = 0;
                 var subtraction = 0;
-
-                var listAddress = new List<Address>();
 
                 do
                 {
@@ -143,16 +148,12 @@ namespace LocationService.Infrastructure.Services.Provider
                     if (retString.Status != ResultCode.OK)
                         return new Result<List<Address>>(retString.Status, retString.Value);
 
-                    var retAddress = _addressesServiceScrap.GetAddressesPageTerm(retString.ValueType);
+                    retAddress = _addressesServiceScrap.GetAddressesPageTerm(retString.ValueType);
 
                     if (retAddress.Status != ResultCode.OK)
                         return new Result<List<Address>>(retAddress.Status, retAddress.Value);
 
-
-                    foreach (var item in retAddress.ValueType)
-                    {
-                        listAddress.Add(item);
-                    }
+                    listAddress.AddRange(retAddress.ValueType);
 
                     pointerInit = lines;
                     rest = rest - subtraction;
@@ -162,7 +163,7 @@ namespace LocationService.Infrastructure.Services.Provider
 
             }
 
-            return null;
+            return new Result<List<Address>>(ResultCode.OK, listAddress);
         }
 
     }
