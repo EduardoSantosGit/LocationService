@@ -69,14 +69,14 @@ namespace LocationService.Infrastructure.Services.Provider
         {
             var result = await PostSendAsync(zipCode);
 
-            if(result.Status == ResultCode.OK)
+            if (result.Status == ResultCode.OK)
             {
-                if(_scrapParser.ContainsValue(result.ValueType, "<p>DADOS ENCONTRADOS COM SUCESSO.</p>", true) == true
+                if (_scrapParser.ContainsValue(result.ValueType, "<p>DADOS ENCONTRADOS COM SUCESSO.</p>", true) == true
                     || _scrapParser.ContainsValue(result.ValueType, "<p>RESULTADO SUPERIOR A ", true) == true)
                 {
                     var retAddress = _addressesServiceScrap.GetAddressesPageCode(result.ValueType);
 
-                    if(retAddress.Status == ResultCode.OK)
+                    if (retAddress.Status == ResultCode.OK)
                         return new Result<Address>(ResultCode.OK, retAddress.ValueType);
                     else
                         return new Result<Address>(retAddress.Status, retAddress.Value);
@@ -92,7 +92,7 @@ namespace LocationService.Infrastructure.Services.Provider
         {
             var result = await PostSendAsync(term);
 
-            if(result.Status == ResultCode.OK)
+            if (result.Status == ResultCode.OK)
             {
                 if (_scrapParser.ContainsValue(result.ValueType, "<p>DADOS ENCONTRADOS COM SUCESSO.</p>", true) == true
                     || _scrapParser.ContainsValue(result.ValueType, "<p>RESULTADO SUPERIOR A ", true) == true)
@@ -107,11 +107,11 @@ namespace LocationService.Infrastructure.Services.Provider
                 else
                     return new Result<List<Address>>(ResultCode.NotFound, "requested data not found");
             }
-           
+
             return new Result<List<Address>>(result.Status, result.Value);
         }
 
-        public async Task<Result<List<Address>>> SliceManagement(string term, string html)
+        private async Task<Result<List<Address>>> SliceManagement(string term, string html)
         {
             var count = _addressesServiceScrap.CountPagesTable(html);
             var listAddress = new List<Address>();
@@ -142,8 +142,8 @@ namespace LocationService.Infrastructure.Services.Provider
                         lines = (pointerInit + rest);
                         subtraction = (pointerInit + rest);
                     }
-                        
-                    var retString = await PostSliceSendAsync(term, 50, pointerInit+1, lines);
+
+                    var retString = await PostSliceSendAsync(term, 50, pointerInit + 1, lines);
 
                     if (retString.Status != ResultCode.OK)
                         return new Result<List<Address>>(retString.Status, retString.Value);
@@ -159,7 +159,7 @@ namespace LocationService.Infrastructure.Services.Provider
                     rest = rest - subtraction;
 
                 } while (count != pointerInit);
-                
+
 
             }
 

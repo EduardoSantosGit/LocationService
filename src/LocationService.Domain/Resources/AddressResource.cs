@@ -6,6 +6,7 @@ namespace LocationService.Domain.Resources
 {
     public class AddressResources
     {
+        public int Count { get; set; }
         public IEnumerable<AddressResource> Addresses { get; set; }
     }
 

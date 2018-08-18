@@ -43,10 +43,13 @@ namespace LocationService.Api.Controllers
 
             if (resultAddresses.Status == Domain.Common.ResultCode.OK)
             {
-                var resource = Mapper.Map<IEnumerable<Address>, IEnumerable<AddressResource>>
+                var lstResour = Mapper.Map<IEnumerable<Address>, IEnumerable<AddressResource>>
                     (
                         resultAddresses.ValueType
                     );
+
+                var resource = new AddressResources { Addresses = lstResour, Count = lstResour.Count() };
+
                 return new OkObjectResult(resource);
             }
 
