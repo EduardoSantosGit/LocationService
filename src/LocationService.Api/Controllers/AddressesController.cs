@@ -23,6 +23,10 @@ namespace LocationService.Api.Controllers
         }
 
         [HttpGet("zipCode/{zipcode}")]
+        [ProducesResponseType(typeof(AddressResource), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> GetAdressCode(string zipcode)
         {
             var resultAddress = await _searchAddressService.FindByZipCode(zipcode);
@@ -37,6 +41,10 @@ namespace LocationService.Api.Controllers
         }
 
         [HttpGet("term/{term}")]
+        [ProducesResponseType(typeof(AddressResources), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> GetAddressTerm(string term)
         {
             var resultAddresses = await _searchAddressService.FindByTerm(term);
