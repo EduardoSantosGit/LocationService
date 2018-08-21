@@ -29,4 +29,11 @@ namespace LocationService.Domain.Models.IBGE
         public string PopMonthMinWage { get; set; }
     }
 
+    public class Education
+    {
+        public string SchoolingRate { get; set; }
+        public string EarlyYearSchool { get; set; }
+        public string FinalYearSchool { get; set; }
+    }
+
 }
