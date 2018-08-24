@@ -1,4 +1,5 @@
-﻿using LocationService.Infrastructure.Services.Provider.Statistic;
+﻿using LocationService.Domain.Common;
+using LocationService.Infrastructure.Services.Provider.Statistic;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +13,7 @@ namespace LocationService.IntegrationTest.IBGE
 
         public ClientIBGEProspect CreateInstance()
         {
-            return new ClientIBGEProspect("http://www.buscacep.correios.com.br/", TimeSpan.FromMinutes(2));
+            return new ClientIBGEProspect("https://cidades.ibge.gov.br/", TimeSpan.FromMinutes(2));
         }
 
         [Fact]
@@ -20,7 +21,9 @@ namespace LocationService.IntegrationTest.IBGE
         {
             var addressApi = CreateInstance();
             var result = await addressApi.GetCountryByName("am", "manaus");
+
             Assert.NotNull(result);
+            Assert.Equal(ResultCode.OK, result.Status);
         }
 
     }
