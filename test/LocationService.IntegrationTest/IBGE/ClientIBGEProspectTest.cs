@@ -26,5 +26,15 @@ namespace LocationService.IntegrationTest.IBGE
             Assert.Equal(ResultCode.OK, result.Status);
         }
 
+        [Fact]
+        public async Task GetCountryByName_WhenNameStateNotFound_ReturnsPageNotFound()
+        {
+            var addressApi = CreateInstance();
+            var result = await addressApi.GetCountryByName("am", "mana");
+
+            Assert.NotNull(result);
+            Assert.Equal(ResultCode.NotFound, result.Status);
+        }
+
     }
 }

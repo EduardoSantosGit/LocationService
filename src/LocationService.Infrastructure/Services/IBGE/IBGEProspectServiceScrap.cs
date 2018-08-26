@@ -14,7 +14,7 @@ namespace LocationService.Infrastructure.Services.IBGE
             _scrapParser = new ScrapParser();
         }
 
-
+        
 
     }
 }
