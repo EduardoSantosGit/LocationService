@@ -34,6 +34,12 @@ namespace LocationService.Domain.Models.IBGE
         public string SchoolingRate { get; set; }
         public string EarlyYearSchool { get; set; }
         public string FinalYearSchool { get; set; }
+        public string EnrollSchoolFund { get; set; }
+        public string EnrollSchoolAvg { get; set; }
+        public string TeacherSchoolFund { get; set; }
+        public string TeacherSchoolAvg { get; set; }
+        public string InstituteSchoolFund { get; set; }
+        public string InstituteSchoolAvg { get; set; }
     }
 
 }
