@@ -11,7 +11,7 @@ namespace LocationService.Domain.Models.IBGE
         public string Mayor { get; set; }
         public Population Population { get; set; }
         public WorkIncome WorkIncome { get; set; }
-
+        public Education Education { get; set; }
     }
 
     public class Population
@@ -40,6 +40,13 @@ namespace LocationService.Domain.Models.IBGE
         public string TeacherSchoolAvg { get; set; }
         public string InstituteSchoolFund { get; set; }
         public string InstituteSchoolAvg { get; set; }
+    }
+
+    public class Economy
+    {
+        public string PIB { get; set; }
+        public string PercRevFontExt { get; set; }
+        public string IndDesenMun { get; set; }
     }
 
 }
