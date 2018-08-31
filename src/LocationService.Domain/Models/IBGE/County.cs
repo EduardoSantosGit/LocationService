@@ -46,7 +46,16 @@ namespace LocationService.Domain.Models.IBGE
     {
         public string PIB { get; set; }
         public string PercRevFontExt { get; set; }
-        public string IndDesenMun { get; set; }
+        public string IndDesenHumWor { get; set; }
+        public string AmountRecFulfilled { get; set; }
+        public string AmountComExp { get; set; }
+    }
+
+    public class Cheers
+    {
+        public string ChildMortality { get; set; }
+        public string HospDiarrhea { get; set; }
+        public string HealthInsuranceSUS { get; set; }
     }
 
 }
