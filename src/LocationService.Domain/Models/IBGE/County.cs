@@ -12,6 +12,8 @@ namespace LocationService.Domain.Models.IBGE
         public Population Population { get; set; }
         public WorkIncome WorkIncome { get; set; }
         public Education Education { get; set; }
+        public Cheers Cheers { get; set; }
+        public TerritoryEnvironment TerritoryEnvironment { get; set; }
     }
 
     public class Population
@@ -56,6 +58,14 @@ namespace LocationService.Domain.Models.IBGE
         public string ChildMortality { get; set; }
         public string HospDiarrhea { get; set; }
         public string HealthInsuranceSUS { get; set; }
+    }
+
+    public class TerritoryEnvironment
+    {
+        public string AreaUnitTerr { get; set; }
+        public string AdequateSanSew { get; set; }
+        public string ArbRoadsPub { get; set; }
+        public string UrbRoadsPub { get; set; }
     }
 
 }
