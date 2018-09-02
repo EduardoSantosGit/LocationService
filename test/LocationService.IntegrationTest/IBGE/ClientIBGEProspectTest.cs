@@ -29,12 +29,11 @@ namespace LocationService.IntegrationTest.IBGE
         [Fact]
         public async Task GetCountryByName_WhenNameStateNotFound_ReturnsPageNotFound()
         {
-            var addressApi = CreateInstance();
-            var result = await addressApi.GetCountryByName("am", "mana");
-
+            var addressApi = new ClientIBGEProspect("https://cidades.ibge.gov.br/", TimeSpan.FromMinutes(2));
+            var result = await addressApi.GetCountryByName("am", "manas");
+        
             Assert.NotNull(result);
             Assert.Equal(ResultCode.NotFound, result.Status);
         }
-
     }
 }
