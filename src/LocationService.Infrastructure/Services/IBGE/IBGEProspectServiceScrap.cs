@@ -20,19 +20,23 @@ namespace LocationService.Infrastructure.Services.IBGE
         {
             var country = new County();
 
-            var blockPop = _scrapParser
-                .ScrapBlockPage(html, "colspan=\"2\">População</th>", "colspan=\"2\">Trabalho e Rendimento</th>");
-
-            var retPop = GetPopulation(blockPop);
+            var retPop = GetPopulation(html);
             if (retPop.Status == ResultCode.OK)
                 country.Population = retPop.ValueType;
+
+            var retWork = GetWorkIncome(html);
+            if (retWork.Status == ResultCode.OK)
+                country.WorkIncome = retWork.ValueType;
 
             return new Result<County>(ResultCode.OK, country);
         }
 
         public Result<Population> GetPopulation(string html)
         {
-            var tablesPop = html.SplitString("<tr _ngcontent-c2017=");
+            var blockPop = _scrapParser
+                .ScrapBlockPage(html, "colspan=\"2\">População</th>", "colspan=\"2\">Trabalho e Rendimento</th>");
+
+            var tablesPop = blockPop.SplitString("<tr _ngcontent-c2017=");
 
             var population = new Population();
 
@@ -61,7 +65,44 @@ namespace LocationService.Infrastructure.Services.IBGE
             return new Result<Population>(ResultCode.OK, population);
         }
 
+        public Result<WorkIncome> GetWorkIncome(string html)
+        {
+            var blockPop = _scrapParser
+                .ScrapBlockPage(html, "colspan=\"2\">Trabalho e Rendimento</th>", "colspan=\"2\">Educação</th>");
 
+            var tableWork = blockPop.SplitString("<tr _ngcontent-c2017=");
+
+            var workInc = new WorkIncome();
+
+            try
+            {
+                if (!string.IsNullOrEmpty(tableWork[1]?.ToString()))
+                    workInc.SalaryAverageMonth = _scrapParser
+                        .ScrapBlockPage(tableWork[1], "class=\"lista__valor\" colspan=\"2\">",
+                                              "<span _ngcontent")?.Trim();
+
+                if (!string.IsNullOrEmpty(tableWork[3]?.ToString()))
+                    workInc.PeopleBusy = _scrapParser
+                        .ScrapBlockPage(tableWork[3], "class=\"lista__valor\" colspan=\"2\">",
+                                              "<span _ngcontent")?.Trim();
+
+                if (!string.IsNullOrEmpty(tableWork[5]?.ToString()))
+                    workInc.PopulationBusyPercentage = _scrapParser
+                        .ScrapBlockPage(tableWork[5], "class=\"lista__valor\" colspan=\"2\">",
+                                              "<span _ngcontent")?.Trim();
+
+                if (!string.IsNullOrEmpty(tableWork[7]?.ToString()))
+                    workInc.PopMonthMinWage = _scrapParser
+                        .ScrapBlockPage(tableWork[7], "class=\"lista__valor\" colspan=\"2\">",
+                                              "<span _ngcontent")?.Trim();
+            }
+            catch (Exception ex)
+            {
+                return new Result<WorkIncome>(ResultCode.Error, ex.Message);
+            }
+
+            return new Result<WorkIncome>(ResultCode.OK, workInc);
+        }
 
     }
 }
