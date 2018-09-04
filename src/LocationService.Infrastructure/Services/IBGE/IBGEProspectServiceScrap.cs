@@ -111,7 +111,7 @@ namespace LocationService.Infrastructure.Services.IBGE
         public Result<Education> GetEducation(string html)
         {
             var blockPop = _scrapParser
-                .ScrapBlockPage(html, "colspan=\"2\">População</th>", "colspan=\"2\">Educação</th>");
+                .ScrapBlockPage(html, "colspan=\"2\">Educação</th>", "colspan=\"2\">Economia</th>");
 
             var tablesEdu = blockPop.SplitString("<tr _ngcontent-c2017=");
 
@@ -119,7 +119,20 @@ namespace LocationService.Infrastructure.Services.IBGE
 
             try
             {
-                
+                if (!string.IsNullOrEmpty(tablesEdu[1]?.ToString()))
+                    education.SchoolingRate = _scrapParser
+                        .ScrapBlockPage(tablesEdu[1], "class=\"lista__valor\" colspan=\"2\">",
+                                              "<span _ngcontent")?.Trim();
+
+                if (!string.IsNullOrEmpty(tablesEdu[3]?.ToString()))
+                    education.EarlyYearSchool = _scrapParser
+                        .ScrapBlockPage(tablesEdu[3], "class=\"lista__valor\" colspan=\"2\">",
+                                              "<span _ngcontent")?.Trim();
+
+                if (!string.IsNullOrEmpty(tablesEdu[5]?.ToString()))
+                    education.FinalYearSchool = _scrapParser
+                        .ScrapBlockPage(tablesEdu[5], "class=\"lista__valor\" colspan=\"2\">",
+                                              "<span _ngcontent")?.Trim();
             }
             catch (Exception ex)
             {
