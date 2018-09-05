@@ -28,6 +28,10 @@ namespace LocationService.Infrastructure.Services.IBGE
             if (retWork.Status == ResultCode.OK)
                 country.WorkIncome = retWork.ValueType;
 
+            var retEdu = GetEducation(html);
+            if (retEdu.Status == ResultCode.OK)
+                country.Education = retEdu.ValueType;
+
             return new Result<County>(ResultCode.OK, country);
         }
 
@@ -102,6 +106,27 @@ namespace LocationService.Infrastructure.Services.IBGE
             }
 
             return new Result<WorkIncome>(ResultCode.OK, workInc);
+        }
+
+        public Result<Education> GetEducation(string html)
+        {
+            var blockPop = _scrapParser
+                .ScrapBlockPage(html, "colspan=\"2\">População</th>", "colspan=\"2\">Educação</th>");
+
+            var tablesEdu = blockPop.SplitString("<tr _ngcontent-c2017=");
+
+            var education = new Education();
+
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                return new Result<Education>(ResultCode.Error, ex.Message);
+            }
+
+            return new Result<Education>(ResultCode.OK, education);
         }
 
     }
