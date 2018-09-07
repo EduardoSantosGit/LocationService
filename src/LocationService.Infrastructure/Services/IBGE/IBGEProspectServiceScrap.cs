@@ -172,5 +172,49 @@ namespace LocationService.Infrastructure.Services.IBGE
             return new Result<Education>(ResultCode.OK, education);
         }
 
+        public Result<Economy> GetEconomy(string html)
+        {
+            var blockPop = _scrapParser
+                .ScrapBlockPage(html, "colspan=\"2\">População</th>", "colspan=\"2\">Trabalho e Rendimento</th>");
+
+            var tablesPop = blockPop.SplitString("<tr _ngcontent-c2017=");
+
+            var economy = new Economy();
+
+            try
+            {
+                if (!string.IsNullOrEmpty(tablesPop[1]?.ToString()))
+                    economy.PIB = _scrapParser
+                        .ScrapBlockPage(tablesPop[1], "class=\"lista__valor\" colspan=\"2\">",
+                                              "<span _ngcontent")?.Trim();
+
+                if (!string.IsNullOrEmpty(tablesPop[3]?.ToString()))
+                    economy.PercRevFontExt = _scrapParser
+                        .ScrapBlockPage(tablesPop[3], "class=\"lista__valor\" colspan=\"2\">",
+                                              "<span _ngcontent")?.Trim();
+
+                if (!string.IsNullOrEmpty(tablesPop[5]?.ToString()))
+                    economy.IndDesenHumWor = _scrapParser
+                        .ScrapBlockPage(tablesPop[5], "class=\"lista__valor\" colspan=\"2\">",
+                                              "<span _ngcontent")?.Trim();
+
+                if (!string.IsNullOrEmpty(tablesPop[7]?.ToString()))
+                    economy.AmountRecFulfilled = _scrapParser
+                        .ScrapBlockPage(tablesPop[7], "class=\"lista__valor\" colspan=\"2\">",
+                                              "<span _ngcontent")?.Trim();
+
+                if (!string.IsNullOrEmpty(tablesPop[9]?.ToString()))
+                    economy.AmountComExp = _scrapParser
+                        .ScrapBlockPage(tablesPop[9], "class=\"lista__valor\" colspan=\"2\">",
+                                              "<span _ngcontent")?.Trim();
+            }
+            catch (Exception ex)
+            {
+                return new Result<Economy>(ResultCode.Error, ex.Message);
+            }
+
+            return new Result<Economy>(ResultCode.OK, economy);
+        }
+
     }
 }
