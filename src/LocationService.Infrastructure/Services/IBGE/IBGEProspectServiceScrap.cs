@@ -133,6 +133,36 @@ namespace LocationService.Infrastructure.Services.IBGE
                     education.FinalYearSchool = _scrapParser
                         .ScrapBlockPage(tablesEdu[5], "class=\"lista__valor\" colspan=\"2\">",
                                               "<span _ngcontent")?.Trim();
+
+                if (!string.IsNullOrEmpty(tablesEdu[7]?.ToString()))
+                    education.EnrollSchoolFund = _scrapParser
+                        .ScrapBlockPage(tablesEdu[7], "class=\"lista__valor\" colspan=\"2\">",
+                                              "<span _ngcontent")?.Trim();
+
+                if (!string.IsNullOrEmpty(tablesEdu[9]?.ToString()))
+                    education.EnrollSchoolAvg = _scrapParser
+                        .ScrapBlockPage(tablesEdu[9], "class=\"lista__valor\" colspan=\"2\">",
+                                              "<span _ngcontent")?.Trim();
+
+                if (!string.IsNullOrEmpty(tablesEdu[11]?.ToString()))
+                    education.TeacherSchoolFund = _scrapParser
+                        .ScrapBlockPage(tablesEdu[11], "class=\"lista__valor\" colspan=\"2\">",
+                                              "<span _ngcontent")?.Trim();
+
+                if (!string.IsNullOrEmpty(tablesEdu[13]?.ToString()))
+                    education.TeacherSchoolAvg = _scrapParser
+                        .ScrapBlockPage(tablesEdu[13], "class=\"lista__valor\" colspan=\"2\">",
+                                              "<span _ngcontent")?.Trim();
+
+                if (!string.IsNullOrEmpty(tablesEdu[15]?.ToString()))
+                    education.InstituteSchoolFund = _scrapParser
+                        .ScrapBlockPage(tablesEdu[15], "class=\"lista__valor\" colspan=\"2\">",
+                                              "<span _ngcontent")?.Trim();
+                
+                if (!string.IsNullOrEmpty(tablesEdu[17]?.ToString()))
+                    education.InstituteSchoolAvg = _scrapParser
+                        .ScrapBlockPage(tablesEdu[17], "class=\"lista__valor\" colspan=\"2\">",
+                                              "<span _ngcontent")?.Trim();
             }
             catch (Exception ex)
             {
