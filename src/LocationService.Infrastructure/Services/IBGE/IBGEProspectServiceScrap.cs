@@ -32,6 +32,10 @@ namespace LocationService.Infrastructure.Services.IBGE
             if (retEdu.Status == ResultCode.OK)
                 country.Education = retEdu.ValueType;
 
+            var retEco = GetEconomy(html);
+            if (retEco.Status == ResultCode.OK)
+                country.Economy = retEco.ValueType;
+
             return new Result<County>(ResultCode.OK, country);
         }
 

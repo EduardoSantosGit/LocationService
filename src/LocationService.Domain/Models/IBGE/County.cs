@@ -12,6 +12,7 @@ namespace LocationService.Domain.Models.IBGE
         public Population Population { get; set; }
         public WorkIncome WorkIncome { get; set; }
         public Education Education { get; set; }
+        public Economy Economy { get; set; }
         public Cheers Cheers { get; set; }
         public TerritoryEnvironment TerritoryEnvironment { get; set; }
     }
