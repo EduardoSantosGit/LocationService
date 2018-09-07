@@ -3,8 +3,6 @@ using LocationService.Domain.Models.IBGE;
 using LocationService.Infrastructure.Common;
 using LocationService.Infrastructure.Services.IBGE;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace LocationService.Infrastructure.Services.Provider.Statistic
@@ -30,7 +28,7 @@ namespace LocationService.Infrastructure.Services.Provider.Statistic
             var retMessage = await this.GetAsync($"{_baseUrl}{_apiUrl}{uf}/{state}/{_endpointLast}");
             var result = await ResultOperations.ReadHttpResult(retMessage);
 
-            if(result.Status == ResultCode.OK)
+            if (result.Status == ResultCode.OK)
             {
                 var retCountry = _serviceScrap.GetCountryPage(result.ValueType);
 
@@ -40,8 +38,5 @@ namespace LocationService.Infrastructure.Services.Provider.Statistic
 
             return null;
         }
-
-        
-
     }
 }

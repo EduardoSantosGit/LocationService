@@ -20,21 +20,28 @@ namespace LocationService.Infrastructure.Services.IBGE
         {
             var country = new County();
 
-            var retPop = GetPopulation(html);
-            if (retPop.Status == ResultCode.OK)
-                country.Population = retPop.ValueType;
+            try
+            {
+                var retPop = GetPopulation(html);
+                if (retPop.Status == ResultCode.OK)
+                    country.Population = retPop.ValueType;
 
-            var retWork = GetWorkIncome(html);
-            if (retWork.Status == ResultCode.OK)
-                country.WorkIncome = retWork.ValueType;
+                var retWork = GetWorkIncome(html);
+                if (retWork.Status == ResultCode.OK)
+                    country.WorkIncome = retWork.ValueType;
 
-            var retEdu = GetEducation(html);
-            if (retEdu.Status == ResultCode.OK)
-                country.Education = retEdu.ValueType;
+                var retEdu = GetEducation(html);
+                if (retEdu.Status == ResultCode.OK)
+                    country.Education = retEdu.ValueType;
 
-            var retEco = GetEconomy(html);
-            if (retEco.Status == ResultCode.OK)
-                country.Economy = retEco.ValueType;
+                var retEco = GetEconomy(html);
+                if (retEco.Status == ResultCode.OK)
+                    country.Economy = retEco.ValueType;
+            }
+            catch(Exception ex)
+            {
+                return new Result<County>(ResultCode.Error, ex.Message);
+            }
 
             return new Result<County>(ResultCode.OK, country);
         }

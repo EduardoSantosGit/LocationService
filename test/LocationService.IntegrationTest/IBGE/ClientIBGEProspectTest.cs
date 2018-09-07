@@ -35,5 +35,15 @@ namespace LocationService.IntegrationTest.IBGE
             Assert.NotNull(result);
             Assert.Equal(ResultCode.NotFound, result.Status);
         }
+
+        [Fact]
+        public async Task GetCountryByName_WhenUfEmpty_ReturnsPageBadRequest()
+        {
+            var addressApi = CreateInstance();
+            var result = await addressApi.GetCountryByName("", "manas");
+
+            Assert.NotNull(result);
+            Assert.Equal(ResultCode.BadRequest, result.Status);
+        }
     }
 }
