@@ -16,6 +16,17 @@ namespace LocationService.Infrastructure.Services.IBGE
             _scrapParser = new ScrapParser();
         }
 
+        public Result<string> VerifyPageComplete(string html)
+        {
+            var value = _scrapParser.ContainsValue(html, 
+                "<app>Carregando...</app>", false);
+
+            if (!value)
+                return new Result<string>(ResultCode.OK);
+
+            return new Result<string>(ResultCode.Error);
+        }
+
         public Result<County> GetCountryPage(string html)
         {
             var country = new County();
